@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///srv/apps/web/app/orgs/%5Bid%5D/contracts/page.tsx"],"sourcesContent":["export default async function ContractsPage({ params }: { params: Promise<{ id: string }> }) {\r\n  const { id } = await params;\r\n  return (\r\n    <div className=\"space-y-4\">\r\n      <h3 className=\"text-lg font-semibold\">Контракты и события — {id}</h3>\r\n      <p>Загрузка ABI, регистрация в FireFly, создание listeners, просмотр событий.</p>\r\n    </div>\r\n  );\r\n}\r\n\r\n"],"names":[],"mappings":";;;;;;AAAe,eAAe,cAAc,EAAE,MAAM,EAAuC;IACzF,MAAM,EAAE,EAAE,EAAE,GAAG,MAAM;IACrB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;;oBAAwB;oBAAuB;;;;;;;0BAC7D,8OAAC;0BAAE;;;;;;;;;;;;AAGT","debugId":null}}]
+}

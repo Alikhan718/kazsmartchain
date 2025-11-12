@@ -1,0 +1,10 @@
+{
+  "/audit/page": "app/audit/page.js",
+  "/network/page": "app/network/page.js",
+  "/orgs/[id]/access/page": "app/orgs/[id]/access/page.js",
+  "/orgs/[id]/privacy/page": "app/orgs/[id]/privacy/page.js",
+  "/orgs/[id]/solana/page": "app/orgs/[id]/solana/page.js",
+  "/orgs/[id]/tokens/page": "app/orgs/[id]/tokens/page.js",
+  "/orgs/page": "app/orgs/page.js",
+  "/page": "app/page.js"
+}

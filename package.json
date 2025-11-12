@@ -1,0 +1,23 @@
+{
+  "name": "kazsmartchain",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run -w apps/api build && npm run -w apps/web build && npm run -w apps/relay build",
+    "dev": "npm run -w apps/api dev & npm run -w apps/web dev & npm run -w apps/relay dev",
+    "lint": "echo \"No linter configured yet\"",
+    "test": "npm run -w apps/api test && npm run -w apps/relay test && npm run -w apps/web test",
+    "seed": "node ./scripts/seed.cjs"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
+

@@ -1,0 +1,10 @@
+{
+  "name": "@kazsmartchain/mock-firefly",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {}
+}
+
