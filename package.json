@@ -11,13 +11,16 @@
     "dev": "npm run -w apps/api dev & npm run -w apps/web dev & npm run -w apps/relay dev",
     "lint": "echo \"No linter configured yet\"",
     "test": "npm run -w apps/api test && npm run -w apps/relay test && npm run -w apps/web test",
-    "seed": "node ./scripts/seed.cjs"
+    "seed": "node ./scripts/seed.cjs",
+    "test:besu": "tsx scripts/test-besu.ts"
   },
   "engines": {
     "node": ">=20.11.0"
   },
   "devDependencies": {
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "tsx": "^4.7.0",
+    "axios": "^1.7.7"
   }
 }
 

@@ -1,0 +1,41 @@
+# FireFly Core - Упрощенная конфигурация для KazSmartChain
+# Используется с docker-compose.simple.yml
+
+core:
+  namespace: default
+  autoinit: true
+
+storage:
+  type: leveldb
+  leveldb:
+    path: /data/leveldb
+
+plugins:
+  blockchain:
+    - name: evmconnect
+      type: evmconnect
+      
+  sharedstorage:
+    - name: ipfs
+      type: ipfs
+      ipfs:
+        api:
+          url: http://ipfs:5001
+        gateway:
+          url: http://ipfs:8080
+          
+  tokens:
+    - name: erc1155
+      type: fftokens
+      fftokens:
+        url: http://localhost:5000
+
+server:
+  address: 0.0.0.0
+  port: 5000
+  publicURL: http://localhost:5000
+
+log:
+  level: debug
+  noColor: false
+

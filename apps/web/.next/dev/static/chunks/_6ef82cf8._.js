@@ -85,15 +85,17 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 __turbopack_context__.s([
     "API_BASE",
     ()=>API_BASE,
-    "DEV_TOKEN",
-    ()=>DEV_TOKEN,
     "RELAY_BASE",
-    ()=>RELAY_BASE
+    ()=>RELAY_BASE,
+    "getDevToken",
+    ()=>getDevToken
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 const API_BASE = ("TURBOPACK compile-time value", "http://localhost:4000") || 'http://localhost:4000';
-const DEV_TOKEN = 'dev:demo-bank:OrgAdmin';
 const RELAY_BASE = ("TURBOPACK compile-time value", "http://localhost:4100") || 'http://localhost:4100';
+function getDevToken(tenantId = 'demo-bank') {
+    return `dev:${tenantId}:OrgAdmin`;
+}
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -109,8 +111,20 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$packages$2f$sdk$2f$src$2f$in
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/apps/web/lib/env.ts [app-client] (ecmascript)");
 ;
 ;
-function createClient(token) {
-    return new __TURBOPACK__imported__module__$5b$project$5d2f$packages$2f$sdk$2f$src$2f$index$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KazClient"](__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["API_BASE"], token || __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DEV_TOKEN"]);
+function createClient(tokenOrTenantId) {
+    // Если передан токен напрямую - используем его
+    // Если передан tenantId (начинается с 'dev:' или это orgId) - генерируем токен
+    // Иначе используем дефолтный токен для demo-bank
+    let token;
+    if (!tokenOrTenantId) {
+        token = (0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDevToken"])('demo-bank');
+    } else if (tokenOrTenantId.startsWith('dev:')) {
+        token = tokenOrTenantId;
+    } else {
+        // Предполагаем, что это tenantId/orgId
+        token = (0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDevToken"])(tokenOrTenantId);
+    }
+    return new __TURBOPACK__imported__module__$5b$project$5d2f$packages$2f$sdk$2f$src$2f$index$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KazClient"](__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["API_BASE"], token);
 }
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -165,7 +179,7 @@ function AssetsPage({ params }) {
                 for(let i = 0; i < bytes.byteLength; i++)binary += String.fromCharCode(bytes[i]);
                 return btoa(binary);
             });
-            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])().ipfsUpload(orgId, file.name, file.type, base64);
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])(orgId).ipfsUpload(orgId, file.name, file.type, base64);
             setCid(res.cid);
         } finally{
             setBusy(false);

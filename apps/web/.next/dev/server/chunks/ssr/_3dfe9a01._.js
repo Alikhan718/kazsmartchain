@@ -5,14 +5,16 @@ module.exports = [
 __turbopack_context__.s([
     "API_BASE",
     ()=>API_BASE,
-    "DEV_TOKEN",
-    ()=>DEV_TOKEN,
     "RELAY_BASE",
-    ()=>RELAY_BASE
+    ()=>RELAY_BASE,
+    "getDevToken",
+    ()=>getDevToken
 ]);
 const API_BASE = ("TURBOPACK compile-time value", "http://localhost:4000") || 'http://localhost:4000';
-const DEV_TOKEN = 'dev:demo-bank:OrgAdmin';
 const RELAY_BASE = ("TURBOPACK compile-time value", "http://localhost:4100") || 'http://localhost:4100';
+function getDevToken(tenantId = 'demo-bank') {
+    return `dev:${tenantId}:OrgAdmin`;
+}
 }),
 "[project]/apps/web/app/orgs/[id]/contracts/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -121,7 +123,7 @@ function ContractsPage({ params }) {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    authorization: `Bearer ${__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DEV_TOKEN"]}`
+                    authorization: `Bearer ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getDevToken"])(orgId)}`
                 },
                 body: JSON.stringify(body)
             }).then((r)=>r.json());
@@ -151,7 +153,7 @@ function ContractsPage({ params }) {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    authorization: `Bearer ${__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DEV_TOKEN"]}`
+                    authorization: `Bearer ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$env$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getDevToken"])(orgId)}`
                 },
                 body: JSON.stringify(body)
             }).then((r)=>r.json());

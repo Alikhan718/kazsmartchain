@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { FireFlyService } from './firefly.service';
+import { BesuService } from './besu.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { RolesGuard } from '../rbac/roles.guard';
 import { Roles } from '../rbac/roles.decorator';
@@ -11,6 +12,7 @@ import { OrgsService } from '../orgs/orgs.service';
 export class FireFlyController {
   constructor(
     private readonly ff: FireFlyService,
+    private readonly besu: BesuService,
     private readonly audit: AuditService,
     private readonly orgs: OrgsService,
   ) {}
@@ -86,6 +88,67 @@ export class FireFlyController {
       await this.audit.log({ organization: { id: org.id } as any, eventType: 'tokens.burn', details: res });
       return res;
     }));
+  }
+}
+
+/**
+ * Контроллер для прямой работы с Besu RPC (для тестирования и отладки)
+ */
+@Controller('/api/besu/rpc')
+export class BesuController {
+  constructor(
+    private readonly besu: BesuService,
+    private readonly audit: AuditService,
+  ) {}
+
+  @Get('/health')
+  async health() {
+    const isHealthy = await this.besu.healthCheck();
+    return { healthy: isHealthy, rpcUrl: process.env.BESU_RPC_URL || 'http://localhost:8545' };
+  }
+
+  @Get('/network')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('OrgAdmin', 'Operator', 'Auditor')
+  async getNetworkInfo() {
+    return this.besu.getNetworkInfo();
+  }
+
+  @Get('/block/:blockNumber')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('OrgAdmin', 'Operator', 'Auditor')
+  async getBlock(@Param('blockNumber') blockNumber: string) {
+    const block = blockNumber === 'latest' || blockNumber === 'earliest' || blockNumber === 'pending'
+      ? blockNumber
+      : `0x${parseInt(blockNumber, 10).toString(16)}`;
+    return this.besu.getBlock(block);
+  }
+
+  @Get('/transaction/:txHash')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('OrgAdmin', 'Operator', 'Auditor')
+  async getTransaction(@Param('txHash') txHash: string) {
+    return this.besu.getTransaction(txHash);
+  }
+
+  @Get('/transaction/:txHash/receipt')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('OrgAdmin', 'Operator', 'Auditor')
+  async getTransactionReceipt(@Param('txHash') txHash: string) {
+    return this.besu.getTransactionReceipt(txHash);
+  }
+
+  @Get('/balance/:address')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('OrgAdmin', 'Operator', 'Auditor')
+  async getBalance(@Param('address') address: string) {
+    const balance = await this.besu.getBalance(address);
+    return {
+      address,
+      balance: balance,
+      balanceWei: parseInt(balance, 16).toString(),
+      balanceEth: (parseInt(balance, 16) / 1e18).toString(),
+    };
   }
 }
 

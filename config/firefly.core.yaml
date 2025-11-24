@@ -1,0 +1,52 @@
+# FireFly Core - Правильная конфигурация с namespaces
+
+# HTTP Server
+http:
+  address: 0.0.0.0
+  port: 5000
+  publicURL: http://localhost:5000
+
+# Logging
+log:
+  level: debug
+
+# Namespaces Configuration
+namespaces:
+  default: default
+  predefined:
+    - name: default
+      description: Default namespace for KazSmartChain
+      plugins:
+        - blockchain0
+        - sharedstorage0
+        - database0
+
+# Plugins Configuration
+plugins:
+  # Database Plugin (PostgreSQL с АВТО-МИГРАЦИЯМИ!)
+  database:
+    - name: database0
+      type: postgres
+      postgres:
+        url: postgres://kaz:kazpass@postgres:5432/kazsmartchain?sslmode=disable
+        migrations:
+          auto: true
+
+  # Blockchain Plugin (Ethereum через EVMConnect)
+  blockchain:
+    - name: blockchain0
+      type: ethereum
+      ethereum:
+        ethconnect:
+          url: http://evmconnect:5008
+          topic: "0"
+
+  # Shared Storage Plugin (IPFS)
+  sharedstorage:
+    - name: sharedstorage0
+      type: ipfs
+      ipfs:
+        api:
+          url: http://ipfs:5001
+        gateway:
+          url: http://ipfs:8080

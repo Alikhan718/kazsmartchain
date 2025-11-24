@@ -1,0 +1,261 @@
+version: "3.9"
+
+# Запуск: docker-compose -f docker-compose.simple.yml up -d
+
+services:
+  # ========================================
+  # Базовая инфраструктура
+  # ========================================
+  
+  postgres:
+    image: postgres:15
+    container_name: kaz-postgres
+    environment:
+      POSTGRES_USER: kaz
+      POSTGRES_PASSWORD: kazpass
+      POSTGRES_DB: kazsmartchain
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kaz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: kaz-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # IPFS - Децентрализованное хранилище
+  # ========================================
+  
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: kaz-ipfs
+    environment:
+      IPFS_PROFILE: server
+    ports:
+      - "5001:5001"  # API
+      - "8080:8080"  # Gateway
+    volumes:
+      - ipfs_data:/data/ipfs
+    command: ["daemon", "--migrate=true", "--agent-version-suffix=docker"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5001/api/v0/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # Hyperledger Besu - Ethereum блокчейн
+  # ========================================
+  
+  besu:
+    image: hyperledger/besu:latest
+    container_name: kaz-besu
+    command:
+      - "--network=dev"
+      - "--data-path=/data"
+      - "--rpc-http-enabled=true"
+      - "--rpc-http-host=0.0.0.0"
+      - "--rpc-http-port=8545"
+      - "--rpc-http-api=ETH,NET,WEB3,ADMIN,MINER,DEBUG"
+      - "--rpc-http-cors-origins=*"
+      - "--host-allowlist=*"
+      - "--miner-enabled=true"
+      - "--miner-coinbase=0xfe3b557e8fb62b89f4916b721be55ceb828dbd73"
+      - "--min-gas-price=0"
+    ports:
+      - "8545:8545"
+    volumes:
+      - besu_data:/data
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8545"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ========================================
+  # Hyperledger FireFly - Blockchain Gateway
+  # ========================================
+  
+  # ========================================
+  # EVMConnect - Blockchain Connector
+  # ========================================
+  
+  evmconnect:
+    image: ghcr.io/hyperledger/firefly-evmconnect:latest
+    container_name: kaz-evmconnect
+    user: "0:0"  # Run as root to avoid permission issues
+    command: ["-f", "/evmconnect/config.yaml"]
+    ports:
+      - "5008:5008"
+    volumes:
+      - evmconnect_data:/evmconnect/data
+      - ./config/evmconnect.yaml:/evmconnect/config.yaml:ro
+    depends_on:
+      - besu
+      - postgres
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5008/eventstreams"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ========================================
+  # Hyperledger FireFly - Blockchain Gateway
+  # ========================================
+  
+  firefly:
+    image: ghcr.io/hyperledger/firefly:latest
+    container_name: kaz-firefly
+    command: ["-f", "/etc/firefly/firefly.core.yaml"]
+    ports:
+      - "5000:5000"
+    volumes:
+      - firefly_data:/data
+      - ./config/firefly.core.yaml:/etc/firefly/firefly.core.yaml:ro
+    depends_on:
+      - besu
+      - ipfs
+      - evmconnect
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5000/api/v1/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  # ========================================
+  # Solana - Devnet (реальный)
+  # ========================================
+  
+  solana-validator:
+    image: solanalabs/solana:stable
+    container_name: kaz-solana
+    command:
+      - solana-test-validator
+      - --no-bpf-jit
+      - --rpc-bind-address=0.0.0.0
+      - --rpc-port=8899
+      - --limit-ledger-size=10000000
+    ports:
+      - "8899:8899"  # RPC
+      - "8900:8900"  # PubSub
+      - "9900:9900"  # Faucet
+    volumes:
+      - solana_data:/data
+    healthcheck:
+      test: ["CMD", "solana", "cluster-version"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ========================================
+  # API - NestJS Backend
+  # ========================================
+  
+  api:
+    image: node:20
+    container_name: kaz-api
+    working_dir: /srv
+    volumes:
+      - ./:/srv
+      - node_modules_root:/srv/node_modules
+      - node_modules_api:/srv/apps/api/node_modules
+      - node_modules_sdk:/srv/packages/sdk/node_modules
+    environment:
+      NODE_ENV: development
+      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
+      
+      # Database
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: kaz
+      POSTGRES_PASSWORD: kazpass
+      POSTGRES_DB: kazsmartchain
+      
+      # Redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      
+      # FireFly (используем имя контейнера вместо host.docker.internal)
+      FIREFLY_BASE_URL: http://firefly:5000
+      FIREFLY_NAMESPACE: default
+      
+      # Besu
+      BESU_RPC_URL: http://besu:8545
+      
+      # IPFS
+      IPFS_BASE_URL: http://ipfs:5001
+      
+      # Solana
+      SOLANA_RPC_URL: http://solana-validator:8899
+      
+      # API
+      API_PORT: 4000
+      API_HOST: 0.0.0.0
+      API_JWT_SECRET: dev-secret-change-in-production
+      
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+      - redis
+      - firefly
+      - solana-validator
+    command: bash -c "npm i -g npm@latest && npm install --workspaces --include-workspace-root --legacy-peer-deps && npm run -w packages/sdk build && npm run -w apps/api migrate:run && npm run -w apps/api start:dev"
+
+  # ========================================
+  # Web - Next.js Frontend
+  # ========================================
+  
+  web:
+    image: node:20
+    container_name: kaz-web
+    working_dir: /srv
+    volumes:
+      - ./:/srv
+      - node_modules_root:/srv/node_modules
+      - node_modules_web:/srv/apps/web/node_modules
+      - node_modules_sdk:/srv/packages/sdk/node_modules
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:4000
+      NEXT_PUBLIC_SOLANA_CLUSTER: devnet
+      NEXT_PUBLIC_RELAY_BASE_URL: http://localhost:4100
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    command: bash -c "while [ ! -d node_modules ]; do echo 'waiting for install...'; sleep 2; done; npm run -w packages/sdk build && npm run -w apps/web dev"
+
+volumes:
+  pgdata:
+  ipfs_data:
+  besu_data:
+  firefly_data:
+  evmconnect_data:
+  solana_data:
+  node_modules_root:
+  node_modules_api:
+  node_modules_web:
+  node_modules_sdk:
+
+networks:
+  default:
+    name: kazsmartchain-network
+

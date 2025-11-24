@@ -4,13 +4,43 @@ import { StatCard } from '../../components/StatCard';
 import { ChartCard } from '../../components/ChartCard';
 import { API_BASE, getDevToken } from '../../lib/env';
 import { useUI } from '../../store/ui';
-import { Network, Shield, Clock, Activity, Plus, Minus, Send } from 'lucide-react';
+import { Network, Shield, Clock, Activity, Plus, Minus, Send, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+
+interface BesuNetworkInfo {
+  chainId: number;
+  blockNumber: number;
+  gasPrice: number;
+}
 
 export default function NetworkPage() {
   const tenant = useUI((s) => s.selectedTenant);
   const [address, setAddress] = useState('');
   const [resp, setResp] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Получаем реальную информацию о сети Besu
+  const { data: networkInfo, isLoading: loadingNetwork, refetch: refetchNetwork } = useQuery<BesuNetworkInfo>({
+    queryKey: ['besu-network'],
+    queryFn: async () => {
+      const res = await fetch(`${API_BASE}/api/besu/rpc/network`, {
+        headers: { authorization: `Bearer ${getDevToken(tenant)}` },
+      });
+      if (!res.ok) throw new Error('Failed to fetch network info');
+      return res.json();
+    },
+    refetchInterval: 10000, // Обновляем каждые 10 секунд
+  });
+
+  // Проверка здоровья Besu
+  const { data: healthInfo } = useQuery({
+    queryKey: ['besu-health'],
+    queryFn: async () => {
+      const res = await fetch(`${API_BASE}/api/besu/rpc/health`);
+      return res.json();
+    },
+    refetchInterval: 30000, // Обновляем каждые 30 секунд
+  });
 
   async function call(path: string, body: any) {
     setLoading(true);
@@ -37,40 +67,70 @@ export default function NetworkPage() {
         <p className="text-gray-400 text-lg">Мониторинг валидаторов, управление разрешениями, просмотр узлов и метрик сети</p>
       </div>
       
+      {/* Статус подключения к Besu */}
+      {healthInfo && (
+        <div className={`p-4 rounded-xl border ${
+          healthInfo.healthy 
+            ? 'border-green-500/20 bg-green-500/10' 
+            : 'border-red-500/20 bg-red-500/10'
+        }`}>
+          <div className="flex items-center gap-3">
+            {healthInfo.healthy ? (
+              <CheckCircle className="w-5 h-5 text-green-400" />
+            ) : (
+              <AlertCircle className="w-5 h-5 text-red-400" />
+            )}
+            <div>
+              <div className="text-sm font-medium text-white">
+                Besu RPC: {healthInfo.healthy ? 'Подключен' : 'Недоступен'}
+              </div>
+              <div className="text-xs text-gray-400 mt-1">
+                {healthInfo.rpcUrl || 'http://localhost:8545'}
+              </div>
+            </div>
+            <button
+              onClick={() => refetchNetwork()}
+              disabled={loadingNetwork}
+              className="ml-auto p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors disabled:opacity-50"
+            >
+              <RefreshCw className={`w-4 h-4 ${loadingNetwork ? 'animate-spin' : ''}`} />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
-          title="Узлы сети" 
-          value="12" 
-          hint="подключенных узлов" 
+          title="Текущий блок" 
+          value={networkInfo ? networkInfo.blockNumber.toLocaleString() : loadingNetwork ? '...' : 'N/A'} 
+          hint={networkInfo ? `Chain ID: ${networkInfo.chainId}` : 'Загрузка...'} 
           icon={Network}
-          trend="up"
-          trendValue="+2"
+          trend={networkInfo ? "up" : "neutral"}
           gradient="blue"
         />
         <StatCard 
-          title="Валидаторы" 
-          value="7" 
-          hint="консенсус QBFT" 
+          title="Chain ID" 
+          value={networkInfo ? networkInfo.chainId.toString() : loadingNetwork ? '...' : 'N/A'} 
+          hint={networkInfo ? 'Идентификатор сети' : 'Загрузка...'} 
           icon={Shield}
           trend="neutral"
           gradient="green"
         />
         <StatCard 
-          title="Время блока" 
-          value="2.1с" 
-          hint="среднее" 
+          title="Gas Price" 
+          value={networkInfo ? `${(networkInfo.gasPrice / 1e9).toFixed(2)} Gwei` : loadingNetwork ? '...' : 'N/A'} 
+          hint={networkInfo ? `${networkInfo.gasPrice.toLocaleString()} wei` : 'Загрузка...'} 
           icon={Clock}
-          trend="down"
-          trendValue="-0.2с"
+          trend="neutral"
           gradient="purple"
         />
         <StatCard 
-          title="Задержка финализации" 
-          value="3 блока" 
-          hint="текущая" 
+          title="Статус" 
+          value={healthInfo?.healthy ? 'Online' : healthInfo === undefined ? '...' : 'Offline'} 
+          hint={healthInfo?.healthy ? 'Besu работает' : 'Проверка...'} 
           icon={Activity}
-          trend="neutral"
-          gradient="orange"
+          trend={healthInfo?.healthy ? "up" : "down"}
+          gradient={healthInfo?.healthy ? "green" : "orange"}
         />
       </div>
       

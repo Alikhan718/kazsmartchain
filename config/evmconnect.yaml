@@ -1,0 +1,34 @@
+# EVMConnect Configuration for KazSmartChain
+
+log:
+  level: debug
+
+# Blockchain connection
+connector:
+  url: http://besu:8545
+
+# Persistence for checkpoints
+persistence:
+  leveldb:
+    path: /evmconnect/data
+
+# FireFly Core connection  
+ffcore:
+  url: http://firefly:5000
+  namespaces:
+    - default
+
+# Confirmations
+confirmations:
+  required: 0
+
+# Policy engine
+policyengine.simple:
+  fixedGasPrice: 0
+  gasOracle:
+    mode: fixed
+
+# API Server
+api:
+  port: 5008
+  address: 0.0.0.0

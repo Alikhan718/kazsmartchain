@@ -5,14 +5,16 @@ module.exports = [
 __turbopack_context__.s([
     "API_BASE",
     ()=>API_BASE,
-    "DEV_TOKEN",
-    ()=>DEV_TOKEN,
     "RELAY_BASE",
-    ()=>RELAY_BASE
+    ()=>RELAY_BASE,
+    "getDevToken",
+    ()=>getDevToken
 ]);
 const API_BASE = ("TURBOPACK compile-time value", "http://localhost:4000") || 'http://localhost:4000';
-const DEV_TOKEN = 'dev:demo-bank:OrgAdmin';
 const RELAY_BASE = ("TURBOPACK compile-time value", "http://localhost:4100") || 'http://localhost:4100';
+function getDevToken(tenantId = 'demo-bank') {
+    return `dev:${tenantId}:OrgAdmin`;
+}
 }),
 "[project]/apps/web/app/orgs/[id]/relay/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
