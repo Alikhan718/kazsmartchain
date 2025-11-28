@@ -1,0 +1,19 @@
+# Исключаем node_modules с хоста из монтирования
+# Они будут создаваться в volumes внутри контейнеров
+node_modules
+**/node_modules
+
+# Исключаем другие ненужные файлы
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+dist
+build
+.next
+coverage
+.nyc_output
+

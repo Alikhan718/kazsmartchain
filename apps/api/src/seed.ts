@@ -13,25 +13,76 @@ async function main() {
   const userRepo = dataSource.getRepository(User);
   const rolesRepo = dataSource.getRepository(RoleAssignment);
 
-  let org = await orgRepo.findOne({ where: { slug: 'demo-bank' } });
-  if (!org) {
-    org = orgRepo.create({ name: 'Demo Bank', slug: 'demo-bank', active: true });
-    await orgRepo.save(org);
+  // Организация 1: Банк ЦентрКредит (BCC)
+  let bccOrg = await orgRepo.findOne({ where: { slug: 'bcc' } });
+  if (!bccOrg) {
+    bccOrg = orgRepo.create({
+      name: 'Банк ЦентрКредит',
+      slug: 'bcc',
+      active: true,
+      fireflyBaseUrl: 'http://firefly:5000',
+    });
+    await orgRepo.save(bccOrg);
+    console.log('✅ Created organization: Банк ЦентрКредит (BCC)');
   }
 
-  let user = await userRepo.findOne({ where: { email: 'admin@demo.bank' } });
-  if (!user) {
-    user = userRepo.create({ email: 'admin@demo.bank', displayName: 'Demo Admin', organization: org });
-    await userRepo.save(user);
+  let bccUser = await userRepo.findOne({ where: { email: 'admin@bcc.kz' } });
+  if (!bccUser) {
+    bccUser = userRepo.create({
+      email: 'admin@bcc.kz',
+      displayName: 'BCC Admin',
+      organization: bccOrg,
+    });
+    await userRepo.save(bccUser);
+    console.log('✅ Created user: admin@bcc.kz');
   }
 
-  const existingRole = await rolesRepo.findOne({ where: { user: { id: user.id } as any, organization: { id: org.id } as any } });
-  if (!existingRole) {
-    const role = rolesRepo.create({ user, organization: org, role: 'OrgAdmin' });
+  const bccRole = await rolesRepo.findOne({
+    where: { user: { id: bccUser.id } as any, organization: { id: bccOrg.id } as any },
+  });
+  if (!bccRole) {
+    const role = rolesRepo.create({ user: bccUser, organization: bccOrg, role: 'OrgAdmin' });
     await rolesRepo.save(role);
+    console.log('✅ Created role: OrgAdmin for BCC');
   }
 
-  console.log('Seed completed');
+  // Организация 2: КазНУ имени Аль-Фараби
+  let kazNuOrg = await orgRepo.findOne({ where: { slug: 'kaznu' } });
+  if (!kazNuOrg) {
+    kazNuOrg = orgRepo.create({
+      name: 'КазНУ имени Аль-Фараби',
+      slug: 'kaznu',
+      active: true,
+      fireflyBaseUrl: 'http://firefly:5000',
+    });
+    await orgRepo.save(kazNuOrg);
+    console.log('✅ Created organization: КазНУ имени Аль-Фараби');
+  }
+
+  let kazNuUser = await userRepo.findOne({ where: { email: 'admin@kaznu.kz' } });
+  if (!kazNuUser) {
+    kazNuUser = userRepo.create({
+      email: 'admin@kaznu.kz',
+      displayName: 'КазНУ Admin',
+      organization: kazNuOrg,
+    });
+    await userRepo.save(kazNuUser);
+    console.log('✅ Created user: admin@kaznu.kz');
+  }
+
+  const kazNuRole = await rolesRepo.findOne({
+    where: { user: { id: kazNuUser.id } as any, organization: { id: kazNuOrg.id } as any },
+  });
+  if (!kazNuRole) {
+    const role = rolesRepo.create({ user: kazNuUser, organization: kazNuOrg, role: 'OrgAdmin' });
+    await rolesRepo.save(role);
+    console.log('✅ Created role: OrgAdmin for КазНУ');
+  }
+
+  console.log('\n🎉 Seed completed successfully!');
+  console.log('📊 Organizations created:');
+  console.log('  1. Банк ЦентрКредит (BCC) - slug: bcc');
+  console.log('  2. КазНУ имени Аль-Фараби - slug: kaznu');
   await dataSource.destroy();
 }
 

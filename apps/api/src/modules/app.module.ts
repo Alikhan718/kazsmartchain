@@ -11,6 +11,7 @@ import { IpfsModule } from './ipfs/ipfs.module';
 import { SolanaModule } from './solana/solana.module';
 import { RelayModule } from './relay/relay.module';
 import { NetworkModule } from './network/network.module';
+import { TokensModule } from './tokens/tokens.module';
 import { EntitiesModule } from '../persistence/entities.module';
 import { RealtimeModule } from './realtime/realtime.module';
 
@@ -40,6 +41,7 @@ import { RealtimeModule } from './realtime/realtime.module';
     SolanaModule,
     RelayModule,
     NetworkModule,
+    TokensModule,
     RealtimeModule,
   ],
 })

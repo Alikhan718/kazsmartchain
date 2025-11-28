@@ -20,6 +20,7 @@ namespaces:
         - blockchain0
         - sharedstorage0
         - database0
+        - erc20_erc721
 
 # Plugins Configuration
 plugins:
@@ -50,3 +51,10 @@ plugins:
           url: http://ipfs:5001
         gateway:
           url: http://ipfs:8080
+
+  # Tokens Plugin (fftokens для ERC-20/ERC-721)
+  tokens:
+    - name: erc20_erc721  # ← Как в FireFly CLI
+      type: fftokens
+      fftokens:
+        url: http://fftokens:3000

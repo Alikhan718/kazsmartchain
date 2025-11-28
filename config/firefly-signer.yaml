@@ -1,0 +1,25 @@
+# FireFly Signer Configuration
+# https://github.com/hyperledger/firefly-signer
+
+server:
+  address: "0.0.0.0"
+  port: 8545
+
+log:
+  level: debug
+
+# Backend blockchain connection
+backend:
+  url: "http://besu:8545"
+  chainId: 1337
+
+# Key management - file-based keystores (raw hex keys)
+fileWallet:
+  path: "/keys"
+  filenames:
+    primaryExt: ".key"
+    with0xPrefix: true
+  defaultPasswordFile: "/keys/password.txt"
+  metadata:
+    format: "none"  # Raw hex private keys, not encrypted
+

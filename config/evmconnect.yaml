@@ -1,11 +1,13 @@
 # EVMConnect Configuration for KazSmartChain
+# Docs: https://github.com/hyperledger/firefly-evmconnect
 
 log:
   level: debug
 
-# Blockchain connection
+# Blockchain connection - через FireFly Signer!
+# Signer подписывает транзакции и отправляет в Besu
 connector:
-  url: http://besu:8545
+  url: http://firefly-signer:8545
 
 # Persistence for checkpoints
 persistence:
@@ -18,13 +20,19 @@ ffcore:
   namespaces:
     - default
 
-# Confirmations
+# Confirmations (0 for dev mode)
 confirmations:
   required: 0
 
-# Policy engine
+# ============================================
+# Transaction Signing via Besu (dev mode)
+# Besu dev-mode has unlocked accounts
+# Uses eth_sendTransaction (node signs)
+# ============================================
+
+# Policy engine - transactions go to Besu which signs them
 policyengine.simple:
-  fixedGasPrice: 0
+  fixedGasPrice: 0       # Dev mode - zero gas price
   gasOracle:
     mode: fixed
 

@@ -1,0 +1,9 @@
+{
+  "network": "besu",
+  "contractAddress": "0x42699A7612A82f1d9C36148af9C77354759b210b",
+  "deployer": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "initialSupply": 1000000,
+  "deploymentBlock": null,
+  "transactionHash": "0xbfe755389114352730ac70430777dd713e1332c161780a9c6551ebbd751c18da",
+  "timestamp": "2025-11-26T08:20:45.745Z"
+}

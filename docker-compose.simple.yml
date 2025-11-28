@@ -1,5 +1,3 @@
-version: "3.9"
-
 # Запуск: docker-compose -f docker-compose.simple.yml up -d
 
 services:
@@ -87,6 +85,29 @@ services:
       start_period: 30s
 
   # ========================================
+  # FireFly Signer - Transaction Signing
+  # Signs transactions before sending to Besu
+  # ========================================
+  
+  firefly-signer:
+    image: ghcr.io/hyperledger/firefly-signer:latest
+    container_name: kaz-signer
+    command: ["-f", "/etc/signer/config.yaml"]
+    ports:
+      - "8555:8545"
+    volumes:
+      - ./config/firefly-signer.yaml:/etc/signer/config.yaml:ro
+      - ./config/keys:/keys:ro
+    depends_on:
+      - besu
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8545/"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  # ========================================
   # Hyperledger FireFly - Blockchain Gateway
   # ========================================
   
@@ -105,7 +126,7 @@ services:
       - evmconnect_data:/evmconnect/data
       - ./config/evmconnect.yaml:/evmconnect/config.yaml:ro
     depends_on:
-      - besu
+      - firefly-signer  # Теперь через signer
       - postgres
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:5008/eventstreams"]
@@ -128,15 +149,45 @@ services:
       - firefly_data:/data
       - ./config/firefly.core.yaml:/etc/firefly/firefly.core.yaml:ro
     depends_on:
-      - besu
-      - ipfs
-      - evmconnect
+      postgres:
+        condition: service_healthy
+      besu:
+        condition: service_started
+      ipfs:
+        condition: service_started
+      evmconnect:
+        condition: service_started
+      fftokens:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:5000/api/v1/status"]
       interval: 15s
       timeout: 10s
       retries: 10
       start_period: 60s
+
+  # ========================================
+  # FFTokens - Token Connector (ERC-20/ERC-721)
+  # ========================================
+  
+  fftokens:
+    image: ghcr.io/hyperledger/firefly-tokens-erc20-erc721:latest
+    container_name: kaz-fftokens
+    ports:
+      - "3001:3000"  # ← Исправлено на 3001 (как в firefly.core.yaml)
+    environment:
+      ETHCONNECT_URL: http://evmconnect:5008  # ← Правильная переменная для fftokens
+      ETHCONNECT_TOPIC: "tokens"  # ← Уникальный топик для tokens!
+      AUTO_INIT: "false"  # Как в FireFly CLI
+      LOG_LEVEL: debug
+    depends_on:
+      - evmconnect
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   # ========================================
   # Solana - Devnet (реальный)
@@ -171,15 +222,16 @@ services:
   api:
     image: node:20
     container_name: kaz-api
-    working_dir: /srv
+    working_dir: /srv/apps/api
     volumes:
       - ./:/srv
-      - node_modules_root:/srv/node_modules
       - node_modules_api:/srv/apps/api/node_modules
       - node_modules_sdk:/srv/packages/sdk/node_modules
+      - node_modules_root_api:/srv/node_modules
     environment:
       NODE_ENV: development
       NPM_CONFIG_LEGACY_PEER_DEPS: "true"
+      NODE_PATH: /srv/apps/api/node_modules:/srv/packages/sdk/node_modules
       
       # Database
       POSTGRES_HOST: postgres
@@ -217,7 +269,7 @@ services:
       - redis
       - firefly
       - solana-validator
-    command: bash -c "npm i -g npm@latest && npm install --workspaces --include-workspace-root --legacy-peer-deps && npm run -w packages/sdk build && npm run -w apps/api migrate:run && npm run -w apps/api start:dev"
+    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-api.sh"]
 
   # ========================================
   # Web - Next.js Frontend
@@ -229,19 +281,20 @@ services:
     working_dir: /srv
     volumes:
       - ./:/srv
-      - node_modules_root:/srv/node_modules
       - node_modules_web:/srv/apps/web/node_modules
       - node_modules_sdk:/srv/packages/sdk/node_modules
+      - node_modules_root:/srv/node_modules
     environment:
       NEXT_PUBLIC_API_BASE_URL: http://localhost:4000
       NEXT_PUBLIC_SOLANA_CLUSTER: devnet
       NEXT_PUBLIC_RELAY_BASE_URL: http://localhost:4100
       PORT: 3000
+      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
     ports:
       - "3000:3000"
     depends_on:
       - api
-    command: bash -c "while [ ! -d node_modules ]; do echo 'waiting for install...'; sleep 2; done; npm run -w packages/sdk build && npm run -w apps/web dev"
+    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-web.sh"]
 
 volumes:
   pgdata:
@@ -250,10 +303,11 @@ volumes:
   firefly_data:
   evmconnect_data:
   solana_data:
-  node_modules_root:
   node_modules_api:
   node_modules_web:
   node_modules_sdk:
+  node_modules_root:
+  node_modules_root_api:
 
 networks:
   default:
