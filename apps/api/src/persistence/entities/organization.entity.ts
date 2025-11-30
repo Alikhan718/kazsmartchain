@@ -13,6 +13,12 @@ export class Organization {
   @Column({ unique: true })
   slug!: string;
 
+  @Column({ nullable: true, unique: true, name: 'bin' })
+  bin?: string; // БИН организации для связи с сертификатами
+
+  @Column({ nullable: true, name: 'email_domain' })
+  emailDomain?: string; // Email домен организации
+
   @Column({ type: 'jsonb', nullable: true })
   limits?: Record<string, unknown>;
 

@@ -30,9 +30,9 @@ export default function TransactionChart() {
 
   if (isLoading) {
     return (
-      <div className="bg-gray-900/50 rounded-xl border border-gray-800 p-6 backdrop-blur-sm animate-pulse">
-        <div className="h-8 bg-gray-800 rounded w-1/3 mb-4"></div>
-        <div className="h-48 bg-gray-800 rounded"></div>
+      <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-800 p-6 backdrop-blur-sm animate-pulse">
+        <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded w-1/3 mb-4"></div>
+        <div className="h-48 bg-gray-200 dark:bg-gray-800 rounded"></div>
       </div>
     );
   }
@@ -68,24 +68,24 @@ export default function TransactionChart() {
   const total = regularTotal + tokenTxCount;
 
   return (
-    <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/20 p-6 backdrop-blur-sm">
+    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-500/10 dark:to-pink-500/10 rounded-xl border border-purple-200 dark:border-purple-500/20 p-6 backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-100 flex items-center gap-2">
-            <Activity className="w-5 h-5 text-purple-400" />
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+            <Activity className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             Transaction Activity / Активность транзакций
           </h3>
-          <p className="text-sm text-gray-400 mt-1">Last 24 hours</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Last 24 hours</p>
         </div>
         <div className="text-right">
-          <div className="text-2xl font-bold text-purple-400">{total}</div>
-          <div className="text-xs text-gray-500">Total transactions</div>
+          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{total}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Total transactions</div>
         </div>
       </div>
 
       <div className="space-y-3">
         {data.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
+          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
             No transaction data yet
           </div>
         ) : (
@@ -98,12 +98,12 @@ export default function TransactionChart() {
 
             return (
               <div key={idx} className="flex items-center gap-3">
-                <div className="text-xs text-gray-400 w-12 text-right font-mono">
+                <div className="text-xs text-gray-600 dark:text-gray-400 w-12 text-right font-mono">
                   {hour}
                 </div>
-                <div className="flex-1 bg-gray-900/50 rounded-full h-8 overflow-hidden border border-gray-800">
+                <div className="flex-1 bg-gray-100 dark:bg-gray-900/50 rounded-full h-8 overflow-hidden border border-gray-200 dark:border-gray-800">
                   <div
-                    className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-end px-3 transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 dark:from-purple-500 dark:to-pink-500 rounded-full flex items-center justify-end px-3 transition-all duration-500"
                     style={{ width: `${Math.max(percentage, 5)}%` }}
                   >
                     {item.count > 0 && (
@@ -119,7 +119,7 @@ export default function TransactionChart() {
         )}
       </div>
 
-      <div className="mt-6 flex items-center justify-between text-xs text-gray-500">
+      <div className="mt-6 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
         <div>Updated every 30 seconds</div>
         <div className="flex items-center gap-1">
           <TrendingUp className="w-3 h-3" />

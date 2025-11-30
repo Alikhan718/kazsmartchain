@@ -13,6 +13,9 @@ import { SolanaAsset } from './entities/solana-asset.entity';
 import { AuditEvent } from './entities/audit-event.entity';
 import { RelayCheckpoint } from './entities/relay-checkpoint.entity';
 import { ProcessedEvent } from './entities/processed-event.entity';
+import { AuthChallenge } from './entities/auth-challenge.entity';
+import { Certificate } from './entities/certificate.entity';
+import { RefreshToken } from './entities/refresh-token.entity';
 
 @Module({
   imports: [
@@ -30,6 +33,9 @@ import { ProcessedEvent } from './entities/processed-event.entity';
       AuditEvent,
       RelayCheckpoint,
       ProcessedEvent,
+      AuthChallenge,
+      Certificate,
+      RefreshToken,
     ]),
   ],
   exports: [TypeOrmModule],

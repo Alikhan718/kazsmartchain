@@ -19,6 +19,21 @@ export class User {
   @Column({ nullable: true })
   walletAddress?: string; // Solana wallet
 
+  @Column({ nullable: true, unique: true, name: 'certificate_serial' })
+  certificateSerial?: string; // Serial number сертификата ЭЦП
+
+  @Column({ type: 'jsonb', nullable: true, name: 'certificate_subject' })
+  certificateSubject?: Record<string, any>; // Subject из сертификата
+
+  @Column({ type: 'jsonb', nullable: true, name: 'certificate_issuer' })
+  certificateIssuer?: Record<string, any>; // Issuer из сертификата
+
+  @Column({ type: 'timestamp', nullable: true, name: 'certificate_valid_from' })
+  certificateValidFrom?: Date;
+
+  @Column({ type: 'timestamp', nullable: true, name: 'certificate_valid_to' })
+  certificateValidTo?: Date;
+
   @ManyToOne(() => Organization, (o) => o.users)
   organization!: Organization;
 

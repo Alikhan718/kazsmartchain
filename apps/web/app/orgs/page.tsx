@@ -85,51 +85,51 @@ export default function Orgs() {
       {/* Header */}
       <div className="animate-fade-in-up">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
-            <Building2 className="w-7 h-7 text-cyan-400" />
+          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-purple-500/20 border border-blue-200 dark:border-blue-500/20">
+            <Building2 className="w-7 h-7 text-blue-600 dark:text-blue-400" />
           </div>
           <h1 className="text-4xl font-bold text-gradient-main">
             Organizations
           </h1>
         </div>
-        <p className="text-gray-400 text-lg ml-14">
+        <p className="text-gray-600 dark:text-gray-400 text-lg ml-14">
           Управление организациями, доступом и блокчейн-ресурсами
         </p>
       </div>
 
       {/* Stats Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-fade-in-up stagger-1">
-        <div className="p-5 rounded-2xl glass border border-gray-800/50 flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400">
+        <div className="p-5 rounded-2xl glass border border-gray-200 dark:border-gray-800/50 flex items-center gap-4">
+          <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400">
             <Building2 className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-white">{organizationsData.length}</div>
-            <div className="text-sm text-gray-400">Активных организаций</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{organizationsData.length}</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Активных организаций</div>
           </div>
         </div>
         
-        <div className="p-5 rounded-2xl glass border border-gray-800/50 flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+        <div className="p-5 rounded-2xl glass border border-gray-200 dark:border-gray-800/50 flex items-center gap-4">
+          <div className="p-3 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
             <Coins className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-white">
-              {isLoading ? '...' : balances?.totalSupply || '0'} <span className="text-lg text-gray-400">KSC</span>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              {isLoading ? '...' : balances?.totalSupply || '0'} <span className="text-lg text-gray-500 dark:text-gray-400">KSC</span>
             </div>
-            <div className="text-sm text-gray-400">Общий баланс токенов</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Общий баланс токенов</div>
           </div>
         </div>
         
-        <div className="p-5 rounded-2xl glass border border-gray-800/50 flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400">
+        <div className="p-5 rounded-2xl glass border border-gray-200 dark:border-gray-800/50 flex items-center gap-4">
+          <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400">
             <Users className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
               {organizationsData.reduce((sum, org) => sum + org.members, 0)}
             </div>
-            <div className="text-sm text-gray-400">Всего участников</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Всего участников</div>
           </div>
         </div>
       </div>
@@ -155,12 +155,12 @@ export default function Orgs() {
                     {org.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-gradient-main transition-all">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-gradient-main transition-all">
                       {org.name}
                     </h3>
-                    <p className="text-sm text-gray-400 flex items-center gap-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
                       {org.description}
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
                         ● активна
                       </span>
                     </p>
@@ -169,23 +169,23 @@ export default function Orgs() {
               </div>
               
               {/* Balance Card */}
-              <div className="relative mb-6 p-5 rounded-xl bg-gray-900/60 border border-gray-800/50 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-purple-500/5" />
+              <div className="relative mb-6 p-5 rounded-xl bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800/50 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 dark:from-blue-500/5 via-transparent to-purple-50/50 dark:to-purple-500/5" />
                 <div className="relative flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${colors.bg.replace('to-transparent', 'to-gray-900')} ${colors.text}`}>
+                    <div className={`p-2 rounded-lg ${colors.bg.replace('to-transparent', 'to-gray-50 dark:to-gray-900')} ${colors.text}`}>
                       <Wallet className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-xs text-gray-400 mb-0.5">KSC Token Balance</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mb-0.5">KSC Token Balance</div>
                       {isLoading ? (
-                        <div className="h-7 w-24 bg-gray-800 rounded animate-pulse" />
+                        <div className="h-7 w-24 bg-gray-200 dark:bg-gray-800 rounded animate-pulse" />
                       ) : (
                         <div className="flex items-baseline gap-2">
                           <span className={`text-2xl font-bold ${colors.text} animate-count`}>
                             {balance?.balance || '0'}
                           </span>
-                          <span className="text-sm text-gray-500">KSC</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">KSC</span>
                         </div>
                       )}
                     </div>
@@ -193,15 +193,15 @@ export default function Orgs() {
                   
                   {balance && balances?.totalSupplyRaw && (
                     <div className="text-right">
-                      <div className="text-xs text-gray-500 mb-1">Доля в сети</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Доля в сети</div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-20 h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="w-20 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                           <div 
-                            className={`h-full rounded-full bg-gradient-to-r ${colors.text === 'text-cyan-400' ? 'from-cyan-500 to-cyan-400' : 'from-purple-500 to-purple-400'}`}
+                            className={`h-full rounded-full bg-gradient-to-r ${colors.text === 'text-blue-600 dark:text-blue-400' || colors.text === 'text-cyan-400' ? 'from-blue-500 to-blue-400' : 'from-purple-500 to-purple-400'}`}
                             style={{ width: `${Math.min(100, (balance.balanceRaw / balances.totalSupplyRaw) * 100)}%` }}
                           />
                         </div>
-                        <span className="text-sm font-medium text-gray-400">
+                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
                           {((balance.balanceRaw / balances.totalSupplyRaw) * 100).toFixed(1)}%
                         </span>
                       </div>
@@ -210,9 +210,9 @@ export default function Orgs() {
                 </div>
                 
                 {/* Wallet address */}
-                <div className="mt-4 pt-3 border-t border-gray-800/50">
+                <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-800/50">
                   <div className="flex items-center justify-between">
-                    <div className="text-xs text-gray-500 font-mono-code">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono-code">
                       {org.address.slice(0, 10)}...{org.address.slice(-8)}
                     </div>
                     <Link
@@ -227,7 +227,7 @@ export default function Orgs() {
               </div>
               
               {/* Members count */}
-              <div className="flex items-center gap-4 mb-6 text-sm text-gray-400">
+              <div className="flex items-center gap-4 mb-6 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center gap-1.5">
                   <Users className="w-4 h-4" />
                   <span>{org.members} участников</span>
@@ -236,13 +236,13 @@ export default function Orgs() {
                   {[...Array(Math.min(5, org.members))].map((_, i) => (
                     <div 
                       key={i}
-                      className="w-7 h-7 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 border-2 border-gray-900 flex items-center justify-center text-xs text-gray-400"
+                      className="w-7 h-7 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-800 border-2 border-white dark:border-gray-900 flex items-center justify-center text-xs text-gray-600 dark:text-gray-400"
                     >
                       {String.fromCharCode(65 + i)}
                     </div>
                   ))}
                   {org.members > 5 && (
-                    <div className="w-7 h-7 rounded-full bg-gray-800 border-2 border-gray-900 flex items-center justify-center text-xs text-gray-400">
+                    <div className="w-7 h-7 rounded-full bg-gray-300 dark:bg-gray-800 border-2 border-white dark:border-gray-900 flex items-center justify-center text-xs text-gray-600 dark:text-gray-400">
                       +{org.members - 5}
                     </div>
                   )}
@@ -276,20 +276,20 @@ export default function Orgs() {
       </div>
 
       {/* Quick Transfer CTA */}
-      <div className="animate-fade-in-up stagger-4 p-6 rounded-2xl glass-strong border border-gray-800/50 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5">
+      <div className="animate-fade-in-up stagger-4 p-6 rounded-2xl glass-strong border border-gray-200 dark:border-gray-800/50 bg-gradient-to-r from-blue-50/50 via-purple-50/50 to-pink-50/50 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-pink-500/5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 text-cyan-400">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-purple-500/20 text-blue-600 dark:text-blue-400">
               <TrendingUp className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Быстрый перевод KSC токенов</h3>
-              <p className="text-sm text-gray-400">Переводите токены между организациями в один клик</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Быстрый перевод KSC токенов</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Переводите токены между организациями в один клик</p>
             </div>
           </div>
           <Link
             href="/tokens"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-medium flex items-center gap-2 transition-all hover:shadow-lg hover:shadow-cyan-500/20 btn-shine"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium flex items-center gap-2 transition-all hover:shadow-lg hover:shadow-blue-200/50 dark:hover:shadow-blue-500/20 btn-shine"
           >
             <Coins className="w-5 h-5" />
             Открыть Token Hub

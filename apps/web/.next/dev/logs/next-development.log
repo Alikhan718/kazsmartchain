@@ -1,5 +1,13 @@
-[00:00:02.373] Server  LOG      ✓ Ready in 1805ms
-[00:00:05.919] Server  LOG      ○ Compiling /explorer ...
-[00:00:12.990] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:36.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:39.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.151] Server  LOG      ✓ Ready in 2.6s
+[00:00:06.498] Server  LOG      ○ Compiling /login ...
+[00:00:13.284] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:13.694] Browser LOG     NCALayer WebSocket connection opened
+[00:00:13.694] Browser WARN    Используются mock данные сертификатов: Ошибка получения токенов: Ошибка выполнения операции
+[00:00:26.736] Browser LOG     Challenge received: {"challenge":"KazSmartChain Login Challenge: 43b5123f40bad73d938...","nonce":"43b5123f..."}
+[00:00:26.736] Browser LOG     Challenge Base64: S2F6U21hcnRDaGFpbiBMb2dpbiBDaGFsbGVuZ2U6IDQzYjUxMj...
+[00:00:26.736] Browser LOG     Certificate info: {"alias":"OrgAlias","certEnd":"MIIF...","certLength":7,"certPreview":"MIIF...","fullCert":"MIIF...","hasPemEnd":false,"hasPemHeaders":false,"storageName":"PKCS12"}
+[00:00:38.999] Browser LOG     Signature received: {"length":5468,"preview":"MIIQAAYJKoZIhvcNAQcCoIIP8TCCD+0CAQExDjAMBggqgw4DCg..."}
+[00:00:38.999] Browser LOG     Login request: {"certLength":7,"dataLength":148,"nonce":"43b5123f...","signatureLength":5468}
+[00:00:38.999] Browser LOG     Sending login request: {"certLength":7,"certPreview":"MIIF...","dataLength":148,"signatureLength":5468}
+[00:00:39.000] Browser LOG     JSON body length: 5741
+[00:00:39.000] Browser LOG     JSON body preview: {"certificate":"MIIF...","signature":"MIIQAAYJKoZIhvcNAQcCoIIP8TCCD+0CAQExDjAMBggqgw4DCgEDAwUAMAsGCSqGSIb3DQEHAaCCBOowggTmMIIETqADAgECAhQ10qKSIVj3PQFtfDoS3O7+ssKR3TAOBgoqgw4DCgEBAgMCBQAwWDFJMEcGA1UEAw

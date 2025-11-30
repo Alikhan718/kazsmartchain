@@ -260,7 +260,11 @@ services:
       # API
       API_PORT: 4000
       API_HOST: 0.0.0.0
-      API_JWT_SECRET: dev-secret-change-in-production
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-in-production}
+      
+      # PHP/KalkanCrypt (для ЭЦП аутентификации)
+      PHP_PATH: /usr/bin/php
+      KALKANCRYPT_PATH: /usr/lib/php/20220829/kalkancrypt.so
       
     ports:
       - "4000:4000"

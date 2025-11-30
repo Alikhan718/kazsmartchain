@@ -110,30 +110,30 @@ function TokensPage() {
         switch(type){
             case 'mint':
                 return {
-                    bg: 'from-emerald-500/20 to-emerald-600/5',
-                    border: 'border-emerald-500/30',
-                    text: 'text-emerald-400',
+                    bg: 'from-emerald-50 to-emerald-50/50 dark:from-emerald-500/20 dark:to-emerald-600/5',
+                    border: 'border-emerald-200 dark:border-emerald-500/30',
+                    text: 'text-emerald-600 dark:text-emerald-400',
                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__["Coins"]
                 };
             case 'burn':
                 return {
-                    bg: 'from-red-500/20 to-red-600/5',
-                    border: 'border-red-500/30',
-                    text: 'text-red-400',
+                    bg: 'from-red-50 to-red-50/50 dark:from-red-500/20 dark:to-red-600/5',
+                    border: 'border-red-200 dark:border-red-500/30',
+                    text: 'text-red-600 dark:text-red-400',
                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"]
                 };
             case 'transfer':
                 return {
-                    bg: 'from-cyan-500/20 to-cyan-600/5',
-                    border: 'border-cyan-500/30',
-                    text: 'text-cyan-400',
+                    bg: 'from-blue-50 to-blue-50/50 dark:from-blue-500/20 dark:to-blue-600/5',
+                    border: 'border-blue-200 dark:border-blue-500/30',
+                    text: 'text-blue-600 dark:text-blue-400',
                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"]
                 };
             default:
                 return {
-                    bg: 'from-gray-500/20 to-gray-600/5',
-                    border: 'border-gray-500/30',
-                    text: 'text-gray-400',
+                    bg: 'from-gray-50 to-gray-50/50 dark:from-gray-500/20 dark:to-gray-600/5',
+                    border: 'border-gray-200 dark:border-gray-500/30',
+                    text: 'text-gray-600 dark:text-gray-400',
                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"]
                 };
         }
@@ -149,9 +149,9 @@ function TokensPage() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/",
-                                className: "p-3 rounded-xl glass border border-gray-800/50 hover:border-cyan-500/30 transition-all hover:scale-105",
+                                className: "p-3 rounded-xl glass border border-gray-200 dark:border-gray-800/50 hover:border-blue-300 dark:hover:border-blue-500/30 transition-all hover:scale-105",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowLeft$3e$__["ArrowLeft"], {
-                                    className: "w-5 h-5 text-gray-400"
+                                    className: "w-5 h-5 text-gray-600 dark:text-gray-400"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
                                     lineNumber: 102,
@@ -168,9 +168,9 @@ function TokensPage() {
                                         className: "flex items-center gap-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-2 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/20",
+                                                className: "p-2 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 border border-amber-200 dark:border-amber-500/20",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__["Coins"], {
-                                                    className: "w-7 h-7 text-amber-400"
+                                                    className: "w-7 h-7 text-amber-600 dark:text-amber-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
                                                     lineNumber: 107,
@@ -196,7 +196,7 @@ function TokensPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-400 mt-1 ml-14",
+                                        className: "text-gray-600 dark:text-gray-400 mt-1 ml-14",
                                         children: "Центр управления токенами KazSmartChain"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -218,7 +218,7 @@ function TokensPage() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: handleRefresh,
                         disabled: isRefetching,
-                        className: "flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium disabled:opacity-50 transition-all hover:shadow-lg hover:shadow-cyan-500/20 btn-shine",
+                        className: "flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium disabled:opacity-50 transition-all hover:shadow-lg hover:shadow-blue-200/50 dark:hover:shadow-blue-500/20 btn-shine",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
                                 className: `w-4 h-4 ${isRefetching ? 'animate-spin' : ''}`
@@ -241,20 +241,20 @@ function TokensPage() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "animate-fade-in-up stagger-1 relative p-8 rounded-3xl glass-strong border border-amber-500/20 overflow-hidden",
+                className: "animate-fade-in-up stagger-1 relative p-8 rounded-3xl glass-strong border border-amber-200 dark:border-amber-500/20 overflow-hidden",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute top-0 left-0 w-full h-full",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px]"
+                                className: "absolute top-0 left-1/4 w-96 h-96 bg-amber-100/50 dark:bg-amber-500/10 rounded-full blur-[100px]"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
                                 lineNumber: 132,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute bottom-0 right-1/4 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px]"
+                                className: "absolute bottom-0 right-1/4 w-80 h-80 bg-orange-100/50 dark:bg-orange-500/10 rounded-full blur-[100px]"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
                                 lineNumber: 133,
@@ -284,7 +284,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-gray-900",
+                                                className: "absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-white dark:border-gray-900",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                     className: "w-4 h-4 text-white"
                                                 }, void 0, false, {
@@ -309,7 +309,7 @@ function TokensPage() {
                                                 className: "flex items-center gap-3 mb-2",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                        className: "text-3xl font-bold text-white",
+                                                        className: "text-3xl font-bold text-gray-900 dark:text-white",
                                                         children: "KSC Token"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -317,7 +317,7 @@ function TokensPage() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+                                                        className: "px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20",
                                                         children: "ERC-20"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -331,7 +331,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-400 mb-3",
+                                                className: "text-gray-600 dark:text-gray-400 mb-3",
                                                 children: "KazSmartChain Native Utility Token"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -342,7 +342,7 @@ function TokensPage() {
                                                 className: "flex items-center gap-2",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-sm font-mono-code text-gray-500",
+                                                        className: "text-sm font-mono-code text-gray-500 dark:text-gray-400",
                                                         children: [
                                                             balances.token.address.slice(0, 16),
                                                             "...",
@@ -355,15 +355,15 @@ function TokensPage() {
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         onClick: ()=>copyAddress(balances.token.address),
-                                                        className: "p-1.5 rounded-lg hover:bg-gray-800 transition-colors",
+                                                        className: "p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
                                                         children: copiedAddress === balances.token.address ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                                            className: "w-4 h-4 text-emerald-400"
+                                                            className: "w-4 h-4 text-emerald-600 dark:text-emerald-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/app/tokens/page.tsx",
                                                             lineNumber: 164,
                                                             columnNumber: 23
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
-                                                            className: "w-4 h-4 text-gray-500"
+                                                            className: "w-4 h-4 text-gray-500 dark:text-gray-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/app/tokens/page.tsx",
                                                             lineNumber: 166,
@@ -396,10 +396,10 @@ function TokensPage() {
                                 className: "flex flex-wrap gap-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 rounded-2xl bg-gray-900/60 border border-gray-800/50 min-w-[140px]",
+                                        className: "p-5 rounded-2xl bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800/50 min-w-[140px]",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500 mb-1 flex items-center gap-1",
+                                                className: "text-xs text-gray-500 dark:text-gray-400 mb-1 flex items-center gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                         className: "w-3 h-3"
@@ -416,7 +416,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-3xl font-bold text-amber-400 animate-count",
+                                                className: "text-3xl font-bold text-amber-600 dark:text-amber-400 animate-count",
                                                 children: statsLoading ? '...' : balances?.totalSupply || '0'
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -424,7 +424,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500",
+                                                className: "text-xs text-gray-500 dark:text-gray-400",
                                                 children: "KSC"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -438,10 +438,10 @@ function TokensPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 rounded-2xl bg-gray-900/60 border border-gray-800/50 min-w-[140px]",
+                                        className: "p-5 rounded-2xl bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800/50 min-w-[140px]",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500 mb-1 flex items-center gap-1",
+                                                className: "text-xs text-gray-500 dark:text-gray-400 mb-1 flex items-center gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                                         className: "w-3 h-3"
@@ -458,7 +458,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-3xl font-bold text-cyan-400 animate-count",
+                                                className: "text-3xl font-bold text-blue-600 dark:text-blue-400 animate-count",
                                                 children: statsLoading ? '...' : stats?.holders || '0'
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -466,7 +466,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500",
+                                                className: "text-xs text-gray-500 dark:text-gray-400",
                                                 children: "организаций"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -480,10 +480,10 @@ function TokensPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 rounded-2xl bg-gray-900/60 border border-gray-800/50 min-w-[140px]",
+                                        className: "p-5 rounded-2xl bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800/50 min-w-[140px]",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500 mb-1 flex items-center gap-1",
+                                                className: "text-xs text-gray-500 dark:text-gray-400 mb-1 flex items-center gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"], {
                                                         className: "w-3 h-3"
@@ -500,7 +500,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-3xl font-bold text-purple-400 animate-count",
+                                                className: "text-3xl font-bold text-purple-600 dark:text-purple-400 animate-count",
                                                 children: statsLoading ? '...' : stats?.totalTransactions || '0'
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -508,7 +508,7 @@ function TokensPage() {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs text-gray-500",
+                                                className: "text-xs text-gray-500 dark:text-gray-400",
                                                 children: "всего"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -543,20 +543,20 @@ function TokensPage() {
                 className: "grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up stagger-2",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-5 rounded-2xl glass border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-emerald-600/5",
+                        className: "p-5 rounded-2xl glass border border-emerald-200 dark:border-emerald-500/20 bg-gradient-to-br from-emerald-50 dark:from-emerald-500/10 to-emerald-50/50 dark:to-emerald-600/5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center gap-2 mb-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__["Coins"], {
-                                        className: "w-5 h-5 text-emerald-400"
+                                        className: "w-5 h-5 text-emerald-600 dark:text-emerald-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 212,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-sm text-gray-600 dark:text-gray-400",
                                         children: "Minted"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -570,7 +570,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-2xl font-bold text-emerald-400",
+                                className: "text-2xl font-bold text-emerald-600 dark:text-emerald-400",
                                 children: statsLoading ? '...' : stats?.totalMinted || '0'
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -578,7 +578,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-xs text-gray-500 mt-1",
+                                className: "text-xs text-gray-500 dark:text-gray-400 mt-1",
                                 children: [
                                     stats?.mintCount || 0,
                                     " операций"
@@ -595,20 +595,20 @@ function TokensPage() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-5 rounded-2xl glass border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 to-cyan-600/5",
+                        className: "p-5 rounded-2xl glass border border-blue-200 dark:border-blue-500/20 bg-gradient-to-br from-blue-50 dark:from-blue-500/10 to-blue-50/50 dark:to-blue-600/5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center gap-2 mb-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
-                                        className: "w-5 h-5 text-cyan-400"
+                                        className: "w-5 h-5 text-blue-600 dark:text-blue-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 223,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-sm text-gray-600 dark:text-gray-400",
                                         children: "Transferred"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -622,7 +622,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-2xl font-bold text-cyan-400",
+                                className: "text-2xl font-bold text-blue-600 dark:text-blue-400",
                                 children: statsLoading ? '...' : stats?.totalTransferred || '0'
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -630,7 +630,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-xs text-gray-500 mt-1",
+                                className: "text-xs text-gray-500 dark:text-gray-400 mt-1",
                                 children: [
                                     stats?.transferCount || 0,
                                     " переводов"
@@ -647,20 +647,20 @@ function TokensPage() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-5 rounded-2xl glass border border-red-500/20 bg-gradient-to-br from-red-500/10 to-red-600/5",
+                        className: "p-5 rounded-2xl glass border border-red-200 dark:border-red-500/20 bg-gradient-to-br from-red-50 dark:from-red-500/10 to-red-50/50 dark:to-red-600/5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center gap-2 mb-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
-                                        className: "w-5 h-5 text-red-400"
+                                        className: "w-5 h-5 text-red-600 dark:text-red-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 234,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-sm text-gray-600 dark:text-gray-400",
                                         children: "Burned"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -674,7 +674,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-2xl font-bold text-red-400",
+                                className: "text-2xl font-bold text-red-600 dark:text-red-400",
                                 children: statsLoading ? '...' : stats?.totalBurned || '0'
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -682,7 +682,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-xs text-gray-500 mt-1",
+                                className: "text-xs text-gray-500 dark:text-gray-400 mt-1",
                                 children: [
                                     stats?.burnCount || 0,
                                     " сжиганий"
@@ -699,20 +699,20 @@ function TokensPage() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-5 rounded-2xl glass border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-purple-600/5",
+                        className: "p-5 rounded-2xl glass border border-purple-200 dark:border-purple-500/20 bg-gradient-to-br from-purple-50 dark:from-purple-500/10 to-purple-50/50 dark:to-purple-600/5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center gap-2 mb-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
-                                        className: "w-5 h-5 text-purple-400"
+                                        className: "w-5 h-5 text-purple-600 dark:text-purple-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 245,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-sm text-gray-600 dark:text-gray-400",
                                         children: "Безопасность"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -726,7 +726,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-xl font-bold text-purple-400",
+                                className: "text-xl font-bold text-purple-600 dark:text-purple-400",
                                 children: "Verified"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -734,7 +734,7 @@ function TokensPage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-xs text-gray-500 mt-1",
+                                className: "text-xs text-gray-500 dark:text-gray-400 mt-1",
                                 children: "OpenZeppelin"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
@@ -760,10 +760,10 @@ function TokensPage() {
                         className: "flex items-center justify-between mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-2xl font-bold text-white flex items-center gap-3",
+                                className: "text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                                        className: "w-6 h-6 text-cyan-400"
+                                        className: "w-6 h-6 text-blue-600 dark:text-blue-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 257,
@@ -778,7 +778,7 @@ function TokensPage() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/orgs",
-                                className: "text-sm text-cyan-400 hover:text-cyan-300 flex items-center gap-1",
+                                className: "text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-1",
                                 children: [
                                     "Все организации",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
@@ -805,17 +805,17 @@ function TokensPage() {
                         children: balancesLoading ? [
                             ...Array(2)
                         ].map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-6 rounded-2xl glass border border-gray-800/50 animate-pulse",
+                                className: "p-6 rounded-2xl glass border border-gray-200 dark:border-gray-800/50 animate-pulse",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-16 bg-gray-800 rounded-xl mb-4"
+                                        className: "h-16 bg-gray-200 dark:bg-gray-800 rounded-xl mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 270,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-8 bg-gray-800 rounded w-1/2"
+                                        className: "h-8 bg-gray-200 dark:bg-gray-800 rounded w-1/2"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
                                         lineNumber: 271,
@@ -829,16 +829,17 @@ function TokensPage() {
                             }, this)) : balances?.balances?.map((org)=>{
                             const orgMeta = organizationsData[org.slug];
                             const percentage = balances.totalSupplyRaw > 0 ? org.balanceRaw / balances.totalSupplyRaw * 100 : 0;
-                            const colorClass = orgMeta?.color === 'purple' ? 'purple' : 'cyan';
+                            const colorClass = orgMeta?.color === 'purple' ? 'purple' : 'blue';
+                            const isBlue = colorClass === 'blue';
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: `/orgs/${org.slug}/tokens`,
-                                className: `group relative p-6 rounded-2xl glass border ${colorClass === 'cyan' ? 'border-cyan-500/20 hover:border-cyan-400/40' : 'border-purple-500/20 hover:border-purple-400/40'} transition-all duration-300 hover:shadow-xl ${colorClass === 'cyan' ? 'hover:shadow-cyan-500/10' : 'hover:shadow-purple-500/10'} overflow-hidden`,
+                                className: `group relative p-6 rounded-2xl glass border ${isBlue ? 'border-blue-200 dark:border-blue-500/20 hover:border-blue-300 dark:hover:border-blue-400/40' : 'border-purple-200 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/40'} transition-all duration-300 hover:shadow-lg dark:hover:shadow-xl ${isBlue ? 'hover:shadow-blue-200/50 dark:hover:shadow-blue-500/10' : 'hover:shadow-purple-200/50 dark:hover:shadow-purple-500/10'} overflow-hidden`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: `absolute inset-0 bg-gradient-to-br ${colorClass === 'cyan' ? 'from-cyan-500/5 to-transparent' : 'from-purple-500/5 to-transparent'} opacity-0 group-hover:opacity-100 transition-opacity`
+                                        className: `absolute inset-0 bg-gradient-to-br ${isBlue ? 'from-blue-50/50 dark:from-blue-500/5 to-transparent' : 'from-purple-50/50 dark:from-purple-500/5 to-transparent'} opacity-0 group-hover:opacity-100 transition-opacity`
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 289,
+                                        lineNumber: 290,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -848,25 +849,25 @@ function TokensPage() {
                                                 className: "flex items-center gap-4",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: `text-3xl p-3 rounded-xl bg-gradient-to-br ${colorClass === 'cyan' ? 'from-cyan-500/20 to-cyan-600/10' : 'from-purple-500/20 to-purple-600/10'}`,
+                                                        className: `text-3xl p-3 rounded-xl bg-gradient-to-br ${isBlue ? 'from-blue-100 to-blue-50 dark:from-blue-500/20 dark:to-blue-600/10' : 'from-purple-100 to-purple-50 dark:from-purple-500/20 dark:to-purple-600/10'}`,
                                                         children: orgMeta?.icon || '🏢'
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 293,
+                                                        lineNumber: 294,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                className: "text-lg font-semibold text-white group-hover:text-gradient-main",
+                                                                className: "text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gradient-main",
                                                                 children: org.organization
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 297,
+                                                                lineNumber: 298,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-gray-500 font-mono-code",
+                                                                className: "text-sm text-gray-500 dark:text-gray-400 font-mono-code",
                                                                 children: [
                                                                     org.address.slice(0, 8),
                                                                     "...",
@@ -874,39 +875,39 @@ function TokensPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 300,
+                                                                lineNumber: 301,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 296,
+                                                        lineNumber: 297,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 292,
+                                                lineNumber: 293,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "opacity-0 group-hover:opacity-100 transition-opacity",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
-                                                    className: `w-5 h-5 ${colorClass === 'cyan' ? 'text-cyan-400' : 'text-purple-400'}`
+                                                    className: `w-5 h-5 ${isBlue ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}`
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                    lineNumber: 306,
+                                                    lineNumber: 307,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 305,
+                                                lineNumber: 306,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 291,
+                                        lineNumber: 292,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -915,127 +916,127 @@ function TokensPage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs text-gray-500 mb-1",
+                                                        className: "text-xs text-gray-500 dark:text-gray-400 mb-1",
                                                         children: "Баланс"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 312,
+                                                        lineNumber: 313,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: `text-3xl font-bold ${colorClass === 'cyan' ? 'text-cyan-400' : 'text-purple-400'}`,
+                                                        className: `text-3xl font-bold ${isBlue ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}`,
                                                         children: [
                                                             org.balance,
                                                             " ",
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-lg text-gray-500",
+                                                                className: "text-lg text-gray-500 dark:text-gray-400",
                                                                 children: "KSC"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 314,
+                                                                lineNumber: 315,
                                                                 columnNumber: 39
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 314,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 311,
+                                                lineNumber: 312,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-right",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs text-gray-500 mb-2",
+                                                        className: "text-xs text-gray-500 dark:text-gray-400 mb-2",
                                                         children: "Доля"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 319,
+                                                        lineNumber: 320,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex items-center gap-2",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-24 h-3 bg-gray-800 rounded-full overflow-hidden",
+                                                                className: "w-24 h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: `h-full rounded-full transition-all duration-1000 ${colorClass === 'cyan' ? 'bg-gradient-to-r from-cyan-600 to-cyan-400' : 'bg-gradient-to-r from-purple-600 to-purple-400'}`,
+                                                                    className: `h-full rounded-full transition-all duration-1000 ${isBlue ? 'bg-gradient-to-r from-blue-600 to-blue-400' : 'bg-gradient-to-r from-purple-600 to-purple-400'}`,
                                                                     style: {
                                                                         width: `${Math.min(100, percentage)}%`
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                    lineNumber: 322,
+                                                                    lineNumber: 323,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 321,
+                                                                lineNumber: 322,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-sm font-medium text-gray-400",
+                                                                className: "text-sm font-medium text-gray-600 dark:text-gray-400",
                                                                 children: [
                                                                     percentage.toFixed(1),
                                                                     "%"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 327,
+                                                                lineNumber: 328,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 320,
+                                                        lineNumber: 321,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 319,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 310,
+                                        lineNumber: 311,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-4 pt-4 border-t border-gray-800/50 flex items-center justify-between text-sm",
+                                        className: "mt-4 pt-4 border-t border-gray-200 dark:border-gray-800/50 flex items-center justify-between text-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-gray-500",
+                                                className: "text-gray-500 dark:text-gray-400",
                                                 children: "Перейти к управлению →"
-                                            }, void 0, false, {
-                                                fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 335,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `px-2 py-1 rounded-full text-xs ${colorClass === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' : 'bg-purple-500/10 text-purple-400'}`,
-                                                children: "Активно"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
                                                 lineNumber: 336,
                                                 columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: `px-2 py-1 rounded-full text-xs ${isBlue ? 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400' : 'bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400'}`,
+                                                children: "Активно"
+                                            }, void 0, false, {
+                                                fileName: "[project]/apps/web/app/tokens/page.tsx",
+                                                lineNumber: 337,
+                                                columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 334,
+                                        lineNumber: 335,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, org.slug, true, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 283,
+                                lineNumber: 284,
                                 columnNumber: 17
                             }, this);
                         })
@@ -1057,41 +1058,41 @@ function TokensPage() {
                         className: "flex items-center justify-between mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-2xl font-bold text-white flex items-center gap-3",
+                                className: "text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"], {
-                                        className: "w-6 h-6 text-purple-400"
+                                        className: "w-6 h-6 text-purple-600 dark:text-purple-400"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 351,
+                                        lineNumber: 352,
                                         columnNumber: 13
                                     }, this),
                                     "История транзакций"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 350,
+                                lineNumber: 351,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-sm text-gray-500",
+                                className: "text-sm text-gray-600 dark:text-gray-500",
                                 children: [
                                     transactions?.total || 0,
                                     " всего"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 354,
+                                lineNumber: 355,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                        lineNumber: 349,
+                        lineNumber: 350,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "rounded-2xl glass-strong border border-gray-800/50 overflow-hidden",
+                        className: "rounded-2xl glass-strong border border-gray-200 dark:border-gray-800/50 overflow-hidden",
                         children: [
                             txLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-8 text-center",
@@ -1102,12 +1103,12 @@ function TokensPage() {
                                             className: "w-8 h-8 text-gray-600"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                            lineNumber: 363,
+                                            lineNumber: 364,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 363,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1115,59 +1116,59 @@ function TokensPage() {
                                         children: "Загрузка транзакций..."
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 365,
+                                        lineNumber: 366,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 361,
+                                lineNumber: 362,
                                 columnNumber: 13
                             }, this) : transactions?.transactions?.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-12 text-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "inline-block p-4 rounded-full bg-gray-800/50 mb-4",
+                                        className: "inline-block p-4 rounded-full bg-gray-100 dark:bg-gray-800/50 mb-4",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
-                                            className: "w-8 h-8 text-gray-600"
+                                            className: "w-8 h-8 text-gray-400 dark:text-gray-600"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                            lineNumber: 370,
+                                            lineNumber: 371,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 369,
+                                        lineNumber: 370,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-400 text-lg",
+                                        className: "text-gray-600 dark:text-gray-400 text-lg",
                                         children: "Транзакций пока нет"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 372,
+                                        lineNumber: 373,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-500 text-sm mt-1",
+                                        className: "text-gray-500 dark:text-gray-500 text-sm mt-1",
                                         children: "Здесь появятся все операции с токенами"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 373,
+                                        lineNumber: 374,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 368,
+                                lineNumber: 369,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "divide-y divide-gray-800/50",
+                                className: "divide-y divide-gray-200 dark:divide-gray-800/50",
                                 children: transactions?.transactions?.slice(0, 15).map((tx, idx)=>{
                                     const styles = getTypeStyles(tx.type);
                                     const Icon = styles.icon;
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "tx-row p-4 flex items-center justify-between hover:bg-gray-800/30",
+                                        className: "tx-row p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-4",
@@ -1178,12 +1179,12 @@ function TokensPage() {
                                                             className: `w-5 h-5 ${styles.text}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                            lineNumber: 388,
+                                                            lineNumber: 389,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 387,
+                                                        lineNumber: 388,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1192,39 +1193,39 @@ function TokensPage() {
                                                                 className: "flex items-center gap-2 mb-1",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: `px-2 py-0.5 rounded-full text-xs font-medium border ${styles.border} ${styles.text} bg-gray-900/50`,
+                                                                        className: `px-2 py-0.5 rounded-full text-xs font-medium border ${styles.border} ${styles.text} bg-gray-50 dark:bg-gray-900/50`,
                                                                         children: tx.type
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                        lineNumber: 392,
+                                                                        lineNumber: 393,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-xs text-gray-500",
+                                                                        className: "text-xs text-gray-500 dark:text-gray-400",
                                                                         children: formatTime(tx.created)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                        lineNumber: 395,
+                                                                        lineNumber: 396,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 391,
+                                                                lineNumber: 392,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "flex items-center gap-3 text-sm",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-gray-400",
+                                                                        className: "text-gray-600 dark:text-gray-400",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "text-gray-600",
+                                                                                className: "text-gray-500 dark:text-gray-600",
                                                                                 children: "От:"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                                lineNumber: 399,
+                                                                                lineNumber: 400,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             " ",
@@ -1232,26 +1233,26 @@ function TokensPage() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                        lineNumber: 398,
+                                                                        lineNumber: 399,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-gray-700",
+                                                                        className: "text-gray-400 dark:text-gray-700",
                                                                         children: "→"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                        lineNumber: 401,
+                                                                        lineNumber: 402,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-gray-400",
+                                                                        className: "text-gray-600 dark:text-gray-400",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "text-gray-600",
+                                                                                className: "text-gray-500 dark:text-gray-600",
                                                                                 children: "Кому:"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                                lineNumber: 403,
+                                                                                lineNumber: 404,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             " ",
@@ -1259,31 +1260,31 @@ function TokensPage() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                        lineNumber: 402,
+                                                                        lineNumber: 403,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                                lineNumber: 397,
+                                                                lineNumber: 398,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                        lineNumber: 390,
+                                                        lineNumber: 391,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 386,
+                                                lineNumber: 387,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-right",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `text-lg font-bold ${tx.type === 'burn' ? 'text-red-400' : tx.type === 'mint' ? 'text-emerald-400' : 'text-cyan-400'}`,
+                                                    className: `text-lg font-bold ${tx.type === 'burn' ? 'text-red-600 dark:text-red-400' : tx.type === 'mint' ? 'text-emerald-600 dark:text-emerald-400' : 'text-blue-600 dark:text-blue-400'}`,
                                                     children: [
                                                         tx.type === 'burn' ? '-' : tx.type === 'mint' ? '+' : '',
                                                         tx.value,
@@ -1291,51 +1292,51 @@ function TokensPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                    lineNumber: 410,
+                                                    lineNumber: 411,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                                lineNumber: 409,
+                                                lineNumber: 410,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, tx.id || idx, true, {
                                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                        lineNumber: 382,
+                                        lineNumber: 383,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 376,
+                                lineNumber: 377,
                                 columnNumber: 13
                             }, this),
                             transactions?.hasMore && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-4 border-t border-gray-800/50 text-center",
+                                className: "p-4 border-t border-gray-200 dark:border-gray-800/50 text-center",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    className: "text-sm text-cyan-400 hover:text-cyan-300",
+                                    className: "text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300",
                                     children: "Показать больше транзакций"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                    lineNumber: 422,
+                                    lineNumber: 423,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                                lineNumber: 421,
+                                lineNumber: 422,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/app/tokens/page.tsx",
-                        lineNumber: 359,
+                        lineNumber: 360,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/app/tokens/page.tsx",
-                lineNumber: 348,
+                lineNumber: 349,
                 columnNumber: 7
             }, this)
         ]

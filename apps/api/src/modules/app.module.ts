@@ -14,6 +14,8 @@ import { NetworkModule } from './network/network.module';
 import { TokensModule } from './tokens/tokens.module';
 import { EntitiesModule } from '../persistence/entities.module';
 import { RealtimeModule } from './realtime/realtime.module';
+import { ECDSAModule } from './ecdsa/ecdsa.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -43,6 +45,8 @@ import { RealtimeModule } from './realtime/realtime.module';
     NetworkModule,
     TokensModule,
     RealtimeModule,
+    ECDSAModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

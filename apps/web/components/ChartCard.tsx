@@ -13,13 +13,13 @@ export function ChartCard({ title, subtitle, type = 'bar' }: ChartCardProps) {
   const gradientId = useId();
   
   return (
-    <div className="p-6 rounded-xl border border-gray-800/50 glass card-hover bg-gradient-to-br from-gray-900/80 to-gray-900/40">
+    <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-800/50 glass card-hover bg-gradient-to-br from-white to-gray-50 dark:from-gray-900/80 dark:to-gray-900/40">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <div className="text-sm font-semibold text-gray-300 mb-1">{title}</div>
-          {subtitle && <div className="text-xs text-gray-500">{subtitle}</div>}
+          <div className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">{title}</div>
+          {subtitle && <div className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</div>}
         </div>
-        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
+        <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400">
           <TrendingUp className="w-4 h-4" />
         </div>
       </div>
@@ -32,7 +32,7 @@ export function ChartCard({ title, subtitle, type = 'bar' }: ChartCardProps) {
               style={{ height: `${(h / maxHeight) * 100}%` }}
             >
               <div className="w-full h-full bg-gradient-to-t from-blue-600 via-blue-500 to-blue-400 rounded-t shadow-lg" />
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-gray-400 whitespace-nowrap">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">
                 {h}
               </div>
             </div>
@@ -43,8 +43,8 @@ export function ChartCard({ title, subtitle, type = 'bar' }: ChartCardProps) {
           <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id={`lineGradient-${gradientId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#60A5FA" />
-                <stop offset="100%" stopColor="#34D399" />
+                <stop offset="0%" stopColor="#2563EB" />
+                <stop offset="100%" stopColor="#10B981" />
               </linearGradient>
             </defs>
             <polyline
