@@ -13,37 +13,37 @@ async function main() {
   const userRepo = dataSource.getRepository(User);
   const rolesRepo = dataSource.getRepository(RoleAssignment);
 
-  // Организация 1: Банк ЦентрКредит (BCC)
-  let bccOrg = await orgRepo.findOne({ where: { slug: 'bcc' } });
-  if (!bccOrg) {
-    bccOrg = orgRepo.create({
-      name: 'Банк ЦентрКредит',
-      slug: 'bcc',
+  // Организация 1: Назарбаевский Университет (НУ)
+  let nuOrg = await orgRepo.findOne({ where: { slug: 'nu' } });
+  if (!nuOrg) {
+    nuOrg = orgRepo.create({
+      name: 'Назарбаевский Университет',
+      slug: 'nu',
       active: true,
       fireflyBaseUrl: 'http://firefly:5000',
     });
-    await orgRepo.save(bccOrg);
-    console.log('✅ Created organization: Банк ЦентрКредит (BCC)');
+    await orgRepo.save(nuOrg);
+    console.log('✅ Created organization: Назарбаевский Университет (НУ)');
   }
 
-  let bccUser = await userRepo.findOne({ where: { email: 'admin@bcc.kz' } });
-  if (!bccUser) {
-    bccUser = userRepo.create({
-      email: 'admin@bcc.kz',
-      displayName: 'BCC Admin',
-      organization: bccOrg,
+  let nuUser = await userRepo.findOne({ where: { email: 'admin@nu.kz' } });
+  if (!nuUser) {
+    nuUser = userRepo.create({
+      email: 'admin@nu.kz',
+      displayName: 'НУ Admin',
+      organization: nuOrg,
     });
-    await userRepo.save(bccUser);
-    console.log('✅ Created user: admin@bcc.kz');
+    await userRepo.save(nuUser);
+    console.log('✅ Created user: admin@nu.kz');
   }
 
-  const bccRole = await rolesRepo.findOne({
-    where: { user: { id: bccUser.id } as any, organization: { id: bccOrg.id } as any },
+  const nuRole = await rolesRepo.findOne({
+    where: { user: { id: nuUser.id } as any, organization: { id: nuOrg.id } as any },
   });
-  if (!bccRole) {
-    const role = rolesRepo.create({ user: bccUser, organization: bccOrg, role: 'OrgAdmin' });
+  if (!nuRole) {
+    const role = rolesRepo.create({ user: nuUser, organization: nuOrg, role: 'OrgAdmin' });
     await rolesRepo.save(role);
-    console.log('✅ Created role: OrgAdmin for BCC');
+    console.log('✅ Created role: OrgAdmin for НУ');
   }
 
   // Организация 2: КазНУ имени Аль-Фараби
@@ -81,7 +81,7 @@ async function main() {
 
   console.log('\n🎉 Seed completed successfully!');
   console.log('📊 Organizations created:');
-  console.log('  1. Банк ЦентрКредит (BCC) - slug: bcc');
+  console.log('  1. Назарбаевский Университет (НУ) - slug: nu');
   console.log('  2. КазНУ имени Аль-Фараби - slug: kaznu');
   await dataSource.destroy();
 }

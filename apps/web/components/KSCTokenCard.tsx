@@ -5,7 +5,7 @@ import { Coins, TrendingUp, ArrowUpRight, Flame, Wallet, ExternalLink, Activity 
 import Link from 'next/link';
 
 const organizationsData: Record<string, { icon: string; color: string }> = {
-  'bcc': { icon: '🏦', color: 'cyan' },
+  'nu': { icon: '🎓', color: 'cyan' },
   'kaznu': { icon: '🎓', color: 'purple' },
 };
 

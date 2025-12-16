@@ -13,23 +13,23 @@ async function main() {
   const kscToken = KSCToken.attach(contractAddress);
 
   // Organizations (using Besu dev accounts with known private keys)
-  const bccAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";    // Dev account #1
+  const nuAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";    // Dev account #1
   const kaznuAddress = "0x627306090abaB3A6e1400e9345bC60c78a8BEf57"; // Dev account #2 (changed for transfer support)
 
   console.log("Contract:", contractAddress);
   console.log("\n📋 Minting Plan:");
-  console.log("   BCC:   100,000 KSC");
+  console.log("   НУ:    100,000 KSC");
   console.log("   КазНУ:  50,000 KSC");
   console.log("   Total: 150,000 KSC\n");
 
-  // Mint for BCC
-  console.log("🏦 Minting for Банк ЦентрКредит (BCC)...");
-  const mintBCC = await kscToken.mint(
-    bccAddress,
+  // Mint for НУ
+  console.log("🎓 Minting for Назарбаевский Университет (НУ)...");
+  const mintNU = await kscToken.mint(
+    nuAddress,
     hre.ethers.parseEther("100000")
   );
-  console.log("   TX:", mintBCC.hash);
-  await mintBCC.wait();
+  console.log("   TX:", mintNU.hash);
+  await mintNU.wait();
   console.log("   ✅ Confirmed!\n");
 
   // Mint for КазНУ
@@ -46,12 +46,12 @@ async function main() {
   console.log("🔍 Verifying final balances...\n");
   
   const totalSupply = await kscToken.totalSupply();
-  const bccBalance = await kscToken.balanceOf(bccAddress);
+  const nuBalance = await kscToken.balanceOf(nuAddress);
   const kaznuBalance = await kscToken.balanceOf(kaznuAddress);
 
   console.log("📊 Results:");
   console.log("   Total Supply:", hre.ethers.formatEther(totalSupply), "KSC");
-  console.log("   BCC Balance:", hre.ethers.formatEther(bccBalance), "KSC");
+  console.log("   НУ Balance:", hre.ethers.formatEther(nuBalance), "KSC");
   console.log("   КазНУ Balance:", hre.ethers.formatEther(kaznuBalance), "KSC");
 
   console.log("\n========================================");

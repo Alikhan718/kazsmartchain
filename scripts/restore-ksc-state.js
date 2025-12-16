@@ -58,32 +58,32 @@ async function main() {
   const KSCToken = await hre.ethers.getContractFactory("KSCToken");
   const kscToken = KSCToken.attach(deploymentInfo.contractAddress);
   
-  const bccAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";
+  const nuAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";
   const kaznuAddress = "0x501E66aB402b9E7b5BeE8c10fc82D4D65c8A8D8C";
   
-  const bccBalance = await kscToken.balanceOf(bccAddress);
+  const nuBalance = await kscToken.balanceOf(nuAddress);
   const kaznuBalance = await kscToken.balanceOf(kaznuAddress);
   const totalSupply = await kscToken.totalSupply();
   
   console.log("   Total Supply:", hre.ethers.formatEther(totalSupply), "KSC");
-  console.log("   BCC Balance:", hre.ethers.formatEther(bccBalance), "KSC");
+  console.log("   НУ Balance:", hre.ethers.formatEther(nuBalance), "KSC");
   console.log("   КазНУ Balance:", hre.ethers.formatEther(kaznuBalance), "KSC\n");
 
   // Step 4: Mint tokens if needed
   console.log("[4/4] Minting tokens for organizations...");
   const [deployer] = await hre.ethers.getSigners();
   
-  const targetBCCBalance = hre.ethers.parseEther("100000"); // 100,000 KSC
+  const targetNUBalance = hre.ethers.parseEther("100000"); // 100,000 KSC
   const targetKazNUBalance = hre.ethers.parseEther("50000"); // 50,000 KSC
   
-  if (bccBalance < targetBCCBalance) {
-    const amountToMint = targetBCCBalance - bccBalance;
-    console.log(`   🪙 Minting ${hre.ethers.formatEther(amountToMint)} KSC for BCC...`);
-    const tx = await kscToken.mint(bccAddress, amountToMint);
+  if (nuBalance < targetNUBalance) {
+    const amountToMint = targetNUBalance - nuBalance;
+    console.log(`   🪙 Minting ${hre.ethers.formatEther(amountToMint)} KSC for НУ...`);
+    const tx = await kscToken.mint(nuAddress, amountToMint);
     await tx.wait();
-    console.log("   ✅ BCC tokens minted!");
+    console.log("   ✅ НУ tokens minted!");
   } else {
-    console.log("   ✅ BCC already has sufficient balance");
+    console.log("   ✅ НУ already has sufficient balance");
   }
   
   if (kaznuBalance < targetKazNUBalance) {
@@ -98,12 +98,12 @@ async function main() {
 
   // Final verification
   console.log("\n🔍 Final Verification:\n");
-  const finalBCCBalance = await kscToken.balanceOf(bccAddress);
+  const finalNUBalance = await kscToken.balanceOf(nuAddress);
   const finalKazNUBalance = await kscToken.balanceOf(kaznuAddress);
   const finalTotalSupply = await kscToken.totalSupply();
   
   console.log("   Total Supply:", hre.ethers.formatEther(finalTotalSupply), "KSC");
-  console.log("   BCC Balance:", hre.ethers.formatEther(finalBCCBalance), "KSC");
+  console.log("   НУ Balance:", hre.ethers.formatEther(finalNUBalance), "KSC");
   console.log("   КазНУ Balance:", hre.ethers.formatEther(finalKazNUBalance), "KSC");
 
   console.log("\n========================================");

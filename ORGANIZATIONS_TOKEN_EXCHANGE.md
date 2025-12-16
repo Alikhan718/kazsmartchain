@@ -11,7 +11,7 @@
 
 | ID | Название | Адрес | Текущий баланс |
 |----|----------|-------|----------------|
-| `bcc` | Банк ЦентрКредит (BCC) | `0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73` | 100,000 KSC |
+| `nu` | Назарбаевский Университет (НУ) | `0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73` | 100,000 KSC |
 | `kaznu` | КазНУ имени Аль-Фараби | `0x501E66aB402b9E7b5BeE8c10fc82D4D65c8A8D8C` | 50,000 KSC |
 
 ## 🚀 Использование
@@ -25,7 +25,7 @@ POST http://localhost:4000/api/tokens/transfer
 Content-Type: application/json
 
 {
-  "fromOrg": "bcc",
+  "fromOrg": "nu",
   "toOrg": "kaznu",
   "amount": 1000
 }
@@ -37,8 +37,8 @@ Content-Type: application/json
   "success": true,
   "transferId": "abc123...",
   "from": {
-    "org": "bcc",
-    "name": "Банк ЦентрКредит (BCC)",
+    "org": "nu",
+    "name": "Назарбаевский Университет (НУ)",
     "address": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
   },
   "to": {
@@ -66,7 +66,7 @@ GET http://localhost:4000/api/tokens/transactions?limit=50&offset=0
 ### 2. Через веб-интерфейс
 
 1. Откройте страницу организации:
-   - BCC: http://localhost:3000/orgs/bcc/tokens
+   - НУ: http://localhost:3000/orgs/nu/tokens
    - КазНУ: http://localhost:3000/orgs/kaznu/tokens
 
 2. Нажмите кнопку **"Transfer Tokens / Перевести токены"**
@@ -85,7 +85,7 @@ Content-Type: application/json
 
 {
   "pool": "8cccb16d-913e-406c-b1d6-a1004aa5be42",
-  "from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73", // НУ address
   "to": "0x501E66aB402b9E7b5BeE8c10fc82D4D65c8A8D8C",
   "amount": "1000",
   "key": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
@@ -114,26 +114,26 @@ npm run restore:ksc
 
 ## 📊 Примеры использования
 
-### Пример 1: BCC переводит 1000 KSC в КазНУ
+### Пример 1: НУ переводит 1000 KSC в КазНУ
 
 ```bash
 curl -X POST http://localhost:4000/api/tokens/transfer \
   -H "Content-Type: application/json" \
   -d '{
-    "fromOrg": "bcc",
+    "fromOrg": "nu",
     "toOrg": "kaznu",
     "amount": 1000
   }'
 ```
 
-### Пример 2: КазНУ переводит 500 KSC в BCC
+### Пример 2: КазНУ переводит 500 KSC в НУ
 
 ```bash
 curl -X POST http://localhost:4000/api/tokens/transfer \
   -H "Content-Type: application/json" \
   -d '{
     "fromOrg": "kaznu",
-    "toOrg": "bcc",
+    "toOrg": "nu",
     "amount": 500
   }'
 ```

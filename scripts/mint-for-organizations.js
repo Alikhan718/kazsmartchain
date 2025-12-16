@@ -13,8 +13,8 @@ async function main() {
   
   // Organization wallets (we'll use different addresses for each org)
   const organizations = {
-    bcc: {
-      name: "Банк ЦентрКредит (BCC)",
+    nu: {
+      name: "Назарбаевский Университет (НУ)",
       address: hre.ethers.getAddress("0xfe3b557e8fb62b89f4916b721be55ceb828dbd73"), // Owner address
       amount: "100000" // 100,000 KSC
     },
@@ -141,9 +141,9 @@ async function main() {
   console.log("========================================\n");
   
   console.log("📝 Summary:");
-  console.log(`   • BCC: ${organizations.bcc.amount} KSC`);
+  console.log(`   • НУ: ${organizations.nu.amount} KSC`);
   console.log(`   • КазНУ: ${organizations.kaznu.amount} KSC`);
-  console.log(`   • Total Minted: ${parseInt(organizations.bcc.amount) + parseInt(organizations.kaznu.amount)} KSC\n`);
+  console.log(`   • Total Minted: ${parseInt(organizations.nu.amount) + parseInt(organizations.kaznu.amount)} KSC\n`);
 }
 
 main()

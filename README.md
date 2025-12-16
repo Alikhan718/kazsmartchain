@@ -2,16 +2,42 @@
 
 **Production-Ready Blockchain Platform** with real token implementation, multi-party workflows, and complete dashboard integration.
 
+> **Проект Blockchain & FinTech Laboratory** при поддержке **NU Impact Foundation**  
+> Назарбаевский Университет (НУ)
+
 ## ✨ Features
 
+### Blockchain Infrastructure
 - ⛓️ **Hyperledger Besu** - EVM-compatible private blockchain (QBFT consensus)
 - 🔥 **Hyperledger FireFly** - Unified blockchain API with event streaming
-- 💰 **KSC Token** - Native ERC-20 utility token (deployed & working)
+- 🔐 **QBFT Consensus** - Quorum Byzantine Fault Tolerance для безопасности сети
+- 📡 **EVMConnect** - Коннектор между FireFly и Besu
+- ✍️ **FireFly Signer** - Подписание транзакций
+
+### Token System
+- 💰 **KSC Token** - Native ERC-20 utility token (deployed & working, 1.15M+ KSC)
+- 🏦 **NU Stablecoin (NU-T)** - University-issued stablecoin contract (1:1 с тенге)
+- 🔐 **Custody Service** - Digital asset custody solution для управления активами
+- 🪙 **FFTokens Integration** - Поддержка ERC-20 и ERC-721 стандартов
+
+### Dashboard & Monitoring
 - 🎨 **Multi-Dashboard System** - Superadmin, Organization & Public Explorer
 - 📊 **Real-time Monitoring** - Live blockchain metrics & transaction tracking
+- 📈 **Transaction Charts** - Графики активности транзакций
+- 🔍 **Blockchain Explorer** - Просмотр блоков и транзакций
+- 📋 **Audit Logging** - Полный журнал всех операций
+
+### Multi-party & Security
 - 🔐 **Multi-party System** - Support for multiple organizations
-- 📦 **IPFS Integration** - Decentralized storage
-- 🌐 **Solana Bridge** - NFT/Certificate integration (planned)
+- 👥 **Role-Based Access Control (RBAC)** - Система ролей и прав доступа
+- 🏢 **Multi-tenant Isolation** - Изоляция данных между организациями
+- 🔒 **Private Messaging** - Приватные транзакции между организациями
+
+### Storage & Integration
+- 📦 **IPFS Integration** - Decentralized storage для файлов и метаданных
+- 🌐 **Solana Integration** - NFT/Certificate integration (базовая реализация)
+- 🗄️ **PostgreSQL** - Надежное хранение бизнес-данных
+- ⚡ **Redis** - Кэширование и сессии
 
 ## 🏗️ Architecture
 
@@ -74,11 +100,6 @@ docker-compose -f docker-compose.simple.yml ps
 Contract Address: 0x42699A7612A82f1d9C36148af9C77354759b210b
 Symbol: KSC
 Decimals: 18
-Total Supply: 1,151,950 KSC
-
-Current Holders:
-  • Банк ЦентрКредит (BCC): 1,099,800 KSC
-  • КазНУ имени Аль-Фараби: 50,000 KSC
 ```
 
 ### Token Operations
@@ -104,10 +125,10 @@ npm run check:ksc-balance
 
 Currently active organizations:
 
-1. **Банк ЦентрКредит (BCC)**
-   - Slug: `bcc`
+1. **Назарбаевский Университет (НУ)**
+   - Slug: `nu`
    - Address: `0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73`
-   - Admin: admin@bcc.kz
+   - Admin: admin@nu.kz
 
 2. **КазНУ имени Аль-Фараби**
    - Slug: `kaznu`
@@ -286,19 +307,37 @@ docker-compose -f docker-compose.simple.yml up -d --build
 
 ## 🎯 Roadmap
 
-- [x] Besu blockchain setup
-- [x] FireFly integration
-- [x] KSC Token deployment
-- [x] Multi-dashboard system
-- [x] Real-time transaction monitoring
-- [x] Organization management
-- [ ] Token transfer functionality
-- [ ] Staking/rewards system
-- [ ] Solana NFT bridge
-- [ ] CBDC (KZT) integration
-- [ ] Government integration
-- [ ] Multi-signature wallets
-- [ ] Advanced analytics
+### ✅ Реализовано
+
+- [x] **Besu blockchain setup** - Полностью настроен приватный блокчейн с QBFT консенсусом
+- [x] **FireFly integration** - Интеграция с Hyperledger FireFly для unified API
+- [x] **KSC Token deployment** - Развернут и работает ERC-20 токен
+- [x] **Multi-dashboard system** - Система дашбордов: Superadmin, Organization, Public Explorer
+- [x] **Real-time transaction monitoring** - Мониторинг транзакций в реальном времени через WebSocket
+- [x] **Organization management** - Управление организациями с мультитенантностью
+- [x] **IPFS integration** - Интеграция с IPFS для децентрализованного хранения файлов
+- [x] **Solana integration** - Базовая интеграция с Solana для NFT/сертификатов
+- [x] **Token balances API** - API для получения балансов и статистики токенов
+- [x] **Transaction history** - История транзакций с фильтрацией и пагинацией
+- [x] **Network monitoring** - Мониторинг сети, валидаторов и метрик блокчейна
+- [x] **Audit logging** - Система аудита всех операций
+- [x] **NU Stablecoin contract** - Контракт для университетского стейблкоина (NU-T)
+- [x] **Custody Service contract** - Контракт для кастоди сервиса
+- [x] **Database seeding** - Система инициализации организаций и пользователей
+- [x] **Role-Based Access Control (RBAC)** - Система ролей и прав доступа
+- [x] **Multi-tenant isolation** - Изоляция данных между организациями
+
+### 🚧 В разработке
+
+- [ ] **Token transfer functionality** - Функциональность переводов токенов между организациями
+- [ ] **Staking/rewards system** - Система стейкинга и вознаграждений
+- [ ] **Solana NFT bridge** - Полная интеграция с Solana для NFT
+- [ ] **CBDC (KZT) integration** - Интеграция с цифровым тенге
+- [ ] **Government integration** - Интеграция с государственными системами
+- [ ] **Multi-signature wallets** - Мультиподписные кошельки
+- [ ] **Advanced analytics** - Расширенная аналитика и отчетность
+- [ ] **Governance system** - Система управления через голосование
+- [ ] **Gas fee burning** - Механизм сжигания gas fees
 
 ## 📚 Documentation
 
@@ -308,7 +347,20 @@ docker-compose -f docker-compose.simple.yml up -d --build
 
 ## 🤝 Contributing
 
-This is a sovereign blockchain project for Kazakhstan. For collaboration inquiries, please contact the project maintainers.
+This is a sovereign blockchain project for Kazakhstan, developed by **Blockchain & FinTech Laboratory** at Nazarbayev University with support from **NU Impact Foundation**.
+
+For collaboration inquiries, please contact the project maintainers.
+
+### About the Project
+
+**KazSmartChain** is part of the research and development initiatives at Nazarbayev University's Blockchain & FinTech Laboratory, aimed at creating a sovereign blockchain infrastructure for Kazakhstan. The project focuses on:
+
+- Building a production-ready blockchain platform
+- Developing innovative fintech solutions
+- Creating educational resources for blockchain technology
+- Supporting digital transformation in Kazakhstan
+
+**Supported by:** NU Impact Foundation
 
 ## 📄 License
 
@@ -317,3 +369,7 @@ Proprietary - All rights reserved
 ---
 
 **Built with ❤️ for Kazakhstan 🇰🇿**
+
+---
+
+**Blockchain & FinTech Laboratory** | **NU Impact Foundation** | **Nazarbayev University**

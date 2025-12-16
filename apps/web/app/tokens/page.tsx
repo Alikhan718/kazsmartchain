@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const organizationsData = {
-  'bcc': {
-    name: 'Банк ЦентрКредит',
-    shortName: 'BCC',
-    icon: '🏦',
+  'nu': {
+    name: 'Назарбаевский Университет',
+    shortName: 'НУ',
+    icon: '🎓',
     color: 'cyan',
   },
   'kaznu': {

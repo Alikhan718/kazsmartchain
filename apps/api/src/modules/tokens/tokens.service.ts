@@ -15,10 +15,10 @@ export class TokensService {
     string,
     { name: string; address: string; slug: string }
   > = {
-    bcc: {
-      name: 'Банк ЦентрКредит (BCC)',
+    nu: {
+      name: 'Назарбаевский Университет (НУ)',
       address: '0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73',
-      slug: 'bcc',
+      slug: 'nu',
     },
     kaznu: {
       name: 'КазНУ имени Аль-Фараби',
@@ -348,7 +348,7 @@ export class TokensService {
 
       // Create pool via FireFly API (proper way according to FireFly docs)
       this.logger.log('Registering KSC token pool via FireFly API...');
-      const ownerAddress = '0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73';
+      const ownerAddress = '0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73'; // НУ address
       
       try {
         const poolResponse = await axios.post(
@@ -449,7 +449,7 @@ export class TokensService {
     try {
       // Validate organizations
       if (!this.organizations[fromOrg] || !this.organizations[toOrg]) {
-        throw new Error(`Invalid organization. Use 'bcc' or 'kaznu'`);
+        throw new Error(`Invalid organization. Use 'nu' or 'kaznu'`);
       }
 
       if (fromOrg === toOrg) {

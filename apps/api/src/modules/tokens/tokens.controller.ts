@@ -37,7 +37,7 @@ export class TokensController {
     schema: {
       type: 'object',
       properties: {
-        fromOrg: { type: 'string', example: 'bcc' },
+        fromOrg: { type: 'string', example: 'nu' },
         toOrg: { type: 'string', example: 'kaznu' },
         amount: { type: 'number', example: 1000 },
       },

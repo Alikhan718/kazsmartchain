@@ -1,4 +1,6 @@
 {
+  "/explorer/page": "app/explorer/page.js",
   "/login/page": "app/login/page.js",
+  "/orgs/[id]/tokens/page": "app/orgs/[id]/tokens/page.js",
   "/page": "app/page.js"
 }

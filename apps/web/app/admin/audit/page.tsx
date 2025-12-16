@@ -24,8 +24,8 @@ export default function AuditPage() {
         {
           id: '1',
           timestamp: new Date().toISOString(),
-          user: 'admin@bcc.kz',
-          organization: 'Банк ЦентрКредит',
+          user: 'admin@nu.kz',
+          organization: 'Назарбаевский Университет',
           action: 'CREATE_TOKEN_POOL',
           resource: 'Token Pool: KZT Stablecoin',
           status: 'success' as const,
@@ -44,8 +44,8 @@ export default function AuditPage() {
         {
           id: '3',
           timestamp: new Date(Date.now() - 7200000).toISOString(),
-          user: 'admin@bcc.kz',
-          organization: 'Банк ЦентрКредит',
+          user: 'admin@nu.kz',
+          organization: 'Назарбаевский Университет',
           action: 'TRANSFER_TOKEN',
           resource: 'Transfer: 1000 KZT',
           status: 'success' as const,

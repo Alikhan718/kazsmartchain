@@ -11,10 +11,10 @@ async function main() {
   if (args.length < 3) {
     console.log("Usage: node scripts/transfer-between-orgs.js <from> <to> <amount>");
     console.log("\nExamples:");
-    console.log("  Transfer from BCC to КазНУ: node scripts/transfer-between-orgs.js bcc kaznu 1000");
-    console.log("  Transfer from КазНУ to BCC: node scripts/transfer-between-orgs.js kaznu bcc 500");
+    console.log("  Transfer from НУ to КазНУ: node scripts/transfer-between-orgs.js nu kaznu 1000");
+    console.log("  Transfer from КазНУ to НУ: node scripts/transfer-between-orgs.js kaznu nu 500");
     console.log("\nOrganizations:");
-    console.log("  bcc   - Банк ЦентрКредит (0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73)");
+    console.log("  nu    - Назарбаевский Университет (0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73)");
     console.log("  kaznu - КазНУ имени Аль-Фараби (0x501E66aB402b9E7b5BeE8c10fc82D4D65c8A8D8C)");
     process.exit(1);
   }
@@ -23,8 +23,8 @@ async function main() {
 
   // Organization mapping
   const organizations = {
-    bcc: {
-      name: 'Банк ЦентрКредит (BCC)',
+    nu: {
+      name: 'Назарбаевский Университет (НУ)',
       address: '0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73',
     },
     kaznu: {
@@ -34,7 +34,7 @@ async function main() {
   };
 
   if (!organizations[fromOrg] || !organizations[toOrg]) {
-    console.error("❌ Invalid organization. Use 'bcc' or 'kaznu'");
+    console.error("❌ Invalid organization. Use 'nu' or 'kaznu'");
     process.exit(1);
   }
 

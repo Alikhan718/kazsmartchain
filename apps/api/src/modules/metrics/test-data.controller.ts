@@ -15,18 +15,18 @@ export class TestDataController {
 
   @Post('generate-transactions')
   async generateTestTransactions() {
-    const bcc = await this.orgRepo.findOne({ where: { slug: 'bcc' } });
+    const nu = await this.orgRepo.findOne({ where: { slug: 'nu' } });
     const kaznu = await this.orgRepo.findOne({ where: { slug: 'kaznu' } });
 
-    if (!bcc || !kaznu) {
+    if (!nu || !kaznu) {
       return { error: 'Organizations not found. Run seed first.' };
     }
 
     const events: Partial<AuditEvent>[] = [];
 
-    // 1. BCC создает Token Pool для KZT Stablecoin
+    // 1. НУ создает Token Pool для KZT Stablecoin
     events.push({
-      organization: bcc,
+      organization: nu,
       eventType: 'TOKEN_POOL_CREATE',
       details: {
         pool: 'KZT-Stablecoin',
@@ -39,14 +39,14 @@ export class TestDataController {
       createdAt: new Date(Date.now() - 7200000), // 2 часа назад
     });
 
-    // 2. BCC mint токенов
+    // 2. НУ mint токенов
     events.push({
-      organization: bcc,
+      organization: nu,
       eventType: 'TOKEN_MINT',
       details: {
         pool: 'KZT-Stablecoin',
         amount: '1000000',
-        to: bcc.slug,
+        to: nu.slug,
         hash: '0x' + Math.random().toString(16).slice(2, 66),
         from: '0x0000000000000000000000000000000000000000',
         value: '1000000 KZT',
@@ -55,14 +55,14 @@ export class TestDataController {
       createdAt: new Date(Date.now() - 6900000),
     });
 
-    // 3. BCC transfer токенов в КазНУ
+    // 3. НУ transfer токенов в КазНУ
     events.push({
-      organization: bcc,
+      organization: nu,
       eventType: 'TOKEN_TRANSFER',
       details: {
         pool: 'KZT-Stablecoin',
         amount: '50000',
-        from: bcc.slug,
+        from: nu.slug,
         to: kaznu.slug,
         hash: '0x' + Math.random().toString(16).slice(2, 66),
         value: '50000 KZT',
@@ -104,7 +104,7 @@ export class TestDataController {
 
     // 6-15. Больше транзакций для графиков
     for (let i = 0; i < 10; i++) {
-      const org = i % 2 === 0 ? bcc : kaznu;
+      const org = i % 2 === 0 ? nu : kaznu;
       events.push({
         organization: org,
         eventType: 'TOKEN_TRANSFER',
@@ -112,7 +112,7 @@ export class TestDataController {
           pool: 'KZT-Stablecoin',
           amount: String(Math.floor(Math.random() * 10000) + 1000),
           from: org.slug,
-          to: i % 2 === 0 ? kaznu.slug : bcc.slug,
+          to: i % 2 === 0 ? kaznu.slug : nu.slug,
           hash: '0x' + Math.random().toString(16).slice(2, 66),
           value: `${Math.floor(Math.random() * 10000) + 1000} KZT`,
           status: 'success',
@@ -132,7 +132,7 @@ export class TestDataController {
         tokenMints: 1,
         tokenTransfers: 11,
         nftMints: 1,
-        organizations: [bcc.name, kaznu.name],
+        organizations: [nu.name, kaznu.name],
       },
     };
   }

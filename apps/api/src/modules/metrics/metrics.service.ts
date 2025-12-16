@@ -182,9 +182,9 @@ export class MetricsService {
     // Пока возвращаем реальные организации-валидаторы KazSmartChain
     return [
       {
-        id: 'validator-bcc',
-        name: 'Банк ЦентрКредит (BCC)',
-        organization: 'bcc',
+        id: 'validator-nu',
+        name: 'Назарбаевский Университет (НУ)',
+        organization: 'nu',
         location: 'Almaty',
         status: 'active',
         uptime: 99.9,

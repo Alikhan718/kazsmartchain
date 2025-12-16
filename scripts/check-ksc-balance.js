@@ -18,10 +18,10 @@ async function main() {
   const ownerBalance = await kscToken.balanceOf(owner.address);
   
   // Organization addresses
-  const bccAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";
+  const nuAddress = "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73";
   const kaznuAddress = "0x501E66aB402b9E7b5BeE8c10fc82D4D65c8A8D8C";
   
-  const bccBalance = await kscToken.balanceOf(bccAddress);
+  const nuBalance = await kscToken.balanceOf(nuAddress);
   const kaznuBalance = await kscToken.balanceOf(kaznuAddress);
   
   console.log("Contract:", contractAddress);
@@ -29,7 +29,7 @@ async function main() {
   console.log("   Total Supply:", hre.ethers.formatEther(totalSupply), "KSC");
   
   console.log("\n🏦 Organizations:");
-  console.log("   BCC Balance:", hre.ethers.formatEther(bccBalance), "KSC");
+  console.log("   НУ Balance:", hre.ethers.formatEther(nuBalance), "KSC");
   console.log("   КазНУ Balance:", hre.ethers.formatEther(kaznuBalance), "KSC\n");
 }
 
