@@ -30,10 +30,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 const organizationsData = {
-    'bcc': {
-        name: 'Банк ЦентрКредит',
-        shortName: 'BCC',
-        icon: '🏦',
+    'nu': {
+        name: 'Назарбаевский Университет',
+        shortName: 'НУ',
+        icon: '🎓',
         color: 'cyan'
     },
     'kaznu': {

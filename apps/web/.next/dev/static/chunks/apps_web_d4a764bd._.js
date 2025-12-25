@@ -192,8 +192,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const organizationsData = {
-    'bcc': {
-        icon: '🏦',
+    'nu': {
+        icon: '🎓',
         color: 'cyan'
     },
     'kaznu': {

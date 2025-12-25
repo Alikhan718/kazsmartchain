@@ -28,15 +28,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 const organizationsData = [
     {
-        id: 'bcc',
-        name: 'Банк ЦентрКредит',
-        shortName: 'BCC',
-        description: 'Финансовая организация',
+        id: 'nu',
+        name: 'Назарбаевский Университет',
+        shortName: 'НУ',
+        description: 'Образовательное учреждение',
         members: 15,
         status: 'active',
         address: '0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73',
         color: 'cyan',
-        icon: '🏦'
+        icon: '🎓'
     },
     {
         id: 'kaznu',
