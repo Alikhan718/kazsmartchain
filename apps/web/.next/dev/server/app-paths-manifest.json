@@ -1,1 +1,4 @@
-{}
+{
+  "/explorer/page": "app/explorer/page.js",
+  "/explorer/verify/page": "app/explorer/verify/page.js"
+}

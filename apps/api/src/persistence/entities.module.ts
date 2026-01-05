@@ -16,6 +16,7 @@ import { ProcessedEvent } from './entities/processed-event.entity';
 import { AuthChallenge } from './entities/auth-challenge.entity';
 import { Certificate } from './entities/certificate.entity';
 import { RefreshToken } from './entities/refresh-token.entity';
+import { Diploma } from './entities/diploma.entity';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { RefreshToken } from './entities/refresh-token.entity';
       AuthChallenge,
       Certificate,
       RefreshToken,
+      Diploma,
     ]),
   ],
   exports: [TypeOrmModule],

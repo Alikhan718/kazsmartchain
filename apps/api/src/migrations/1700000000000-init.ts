@@ -150,9 +150,31 @@ export class Init1700000000000 implements MigrationInterface {
         "createdAt" timestamptz DEFAULT now()
       );
     `);
+    await queryRunner.query(`
+      CREATE TABLE diplomas (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        "organizationId" uuid REFERENCES organizations(id) ON DELETE CASCADE,
+        "ediplomaId" varchar NOT NULL UNIQUE,
+        "solanaMint" varchar UNIQUE,
+        "publicMetadataCid" varchar,
+        "privateDataCid" varchar,
+        "besuTxHash" varchar,
+        status varchar NOT NULL DEFAULT 'issued',
+        "publicData" jsonb,
+        "privateDataHash" varchar,
+        "issuedAt" timestamptz,
+        "revokedAt" timestamptz,
+        "createdAt" timestamptz DEFAULT now(),
+        "updatedAt" timestamptz DEFAULT now()
+      );
+    `);
+    await queryRunner.query(`CREATE INDEX "IDX_diplomas_ediplomaId" ON diplomas("ediplomaId");`);
+    await queryRunner.query(`CREATE INDEX "IDX_diplomas_solanaMint" ON diplomas("solanaMint");`);
+    await queryRunner.query(`CREATE INDEX "IDX_diplomas_besuTxHash" ON diplomas("besuTxHash");`);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`DROP TABLE IF EXISTS diplomas`);
     await queryRunner.query(`DROP TABLE IF EXISTS processed_events`);
     await queryRunner.query(`DROP TABLE IF EXISTS relay_checkpoints`);
     await queryRunner.query(`DROP TABLE IF EXISTS audit_events`);

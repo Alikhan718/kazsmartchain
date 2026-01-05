@@ -16,6 +16,7 @@ import { EntitiesModule } from '../persistence/entities.module';
 import { RealtimeModule } from './realtime/realtime.module';
 import { ECDSAModule } from './ecdsa/ecdsa.module';
 import { UsersModule } from './users/users.module';
+import { DiplomasModule } from './diplomas/diplomas.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { UsersModule } from './users/users.module';
     RealtimeModule,
     ECDSAModule,
     UsersModule,
+    DiplomasModule,
   ],
 })
 export class AppModule {}
