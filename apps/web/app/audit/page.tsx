@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { createClient } from '../../lib/client';
-import { useUI } from '../../store/ui';
 import { FileText, Search, RefreshCw, Filter, Download, Clock, User, Tag } from 'lucide-react';
 
 export default function AuditPage() {
-  const tenant = useUI((s) => s.selectedTenant);
+  // Используем дефолтный тенант, так как меню выбора убрано
+  const tenant = 'demo-bank';
   const [type, setType] = useState('');
   const [userId, setUserId] = useState('');
   
@@ -60,11 +60,6 @@ export default function AuditPage() {
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span>Автообновление каждые 5 сек</span>
             </div>
-            {tenant && (
-              <div className="text-xs text-gray-500 px-2 py-1 rounded bg-gray-800/50">
-                Тенант: {tenant}
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -179,22 +174,18 @@ export default function AuditPage() {
                       <FileText className="w-12 h-12 mx-auto mb-3 opacity-50" />
                       <p className="mb-2">События аудита не найдены</p>
                       <div className="text-xs text-gray-500 space-y-2">
-                        {tenant ? (
-                          <>
-                            <p>Для тенанта "{tenant}" события не найдены.</p>
-                            <div className="mt-3 p-3 bg-gray-800/50 rounded-lg text-left max-w-md mx-auto">
-                              <p className="font-medium text-gray-300 mb-2">Как создать события для демо:</p>
-                              <ul className="space-y-1 text-gray-400 list-disc list-inside">
-                                <li>Создайте NFT в разделе <strong className="text-purple-400">Solana</strong></li>
-                                <li>Создайте пул токенов в разделе <strong className="text-orange-400">Токены</strong></li>
-                                <li>Отправьте приватную транзакцию в разделе <strong className="text-green-400">Приватность</strong></li>
-                              </ul>
-                              <p className="mt-2 text-gray-500 text-xs">События появятся здесь автоматически через несколько секунд</p>
-                            </div>
-                          </>
-                        ) : (
-                          <p>Выберите тенант в правом верхнем углу</p>
-                        )}
+                        <>
+                          <p>События не найдены.</p>
+                          <div className="mt-3 p-3 bg-gray-800/50 rounded-lg text-left max-w-md mx-auto">
+                            <p className="font-medium text-gray-300 mb-2">Как создать события для демо:</p>
+                            <ul className="space-y-1 text-gray-400 list-disc list-inside">
+                              <li>Создайте NFT в разделе <strong className="text-purple-400">Solana</strong></li>
+                              <li>Создайте пул токенов в разделе <strong className="text-orange-400">Токены</strong></li>
+                              <li>Отправьте приватную транзакцию в разделе <strong className="text-green-400">Приватность</strong></li>
+                            </ul>
+                            <p className="mt-2 text-gray-500 text-xs">События появятся здесь автоматически через несколько секунд</p>
+                          </div>
+                        </>
                       </div>
                     </td>
                   </tr>

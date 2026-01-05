@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { StatCard } from '../../components/StatCard';
 import { ChartCard } from '../../components/ChartCard';
 import { API_BASE, getDevToken } from '../../lib/env';
-import { useUI } from '../../store/ui';
 import { Network, Shield, Clock, Activity, Plus, Minus, Send, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 
@@ -14,7 +13,8 @@ interface BesuNetworkInfo {
 }
 
 export default function NetworkPage() {
-  const tenant = useUI((s) => s.selectedTenant);
+  // Используем дефолтный тенант, так как меню выбора убрано
+  const tenant = 'demo-bank';
   const [address, setAddress] = useState('');
   const [resp, setResp] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);

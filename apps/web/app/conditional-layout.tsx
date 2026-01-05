@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Logo } from '../components/Logo';
-import { TenantSwitcher } from '../components/TenantSwitcher';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { Home, Users, FileText, Coins, Shield } from 'lucide-react';
 
@@ -68,7 +67,6 @@ export function ConditionalLayout({ children }: { children: React.ReactNode }) {
               <span className="text-emerald-700 dark:text-emerald-400 text-xs font-medium">Mainnet</span>
             </div>
             <ThemeToggle />
-            <TenantSwitcher />
           </div>
         </div>
       </header>
