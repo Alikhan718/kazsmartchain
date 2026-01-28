@@ -51,8 +51,10 @@ async function main() {
 
       // Mint tokens via FireFly
       console.log(`   🪙 Minting tokens via FireFly...`);
+      const fireflyUrl = process.env.FIREFLY_BASE_URL || 'http://localhost:5000';
+      const fireflyNamespace = process.env.FIREFLY_NAMESPACE || 'default';
       const response = await axios.post(
-        'http://localhost:5000/api/v1/namespaces/default/tokens/mint',
+        `${fireflyUrl}/api/v1/namespaces/${fireflyNamespace}/tokens/mint`,
         {
           pool: poolId,
           to: org.address,
@@ -92,10 +94,12 @@ async function main() {
 
   // Check via FireFly API
   console.log("🔍 Checking FireFly Token Accounts:\n");
+  const fireflyUrl = process.env.FIREFLY_BASE_URL || 'http://localhost:5000';
+  const fireflyNamespace = process.env.FIREFLY_NAMESPACE || 'default';
   
   try {
     const accountsResponse = await axios.get(
-      'http://localhost:5000/api/v1/namespaces/default/tokens/accounts'
+      `${fireflyUrl}/api/v1/namespaces/${fireflyNamespace}/tokens/accounts`
     );
     
     console.log(`Found ${accountsResponse.data.length} token accounts:\n`);
@@ -119,7 +123,7 @@ async function main() {
   
   try {
     const txResponse = await axios.get(
-      'http://localhost:5000/api/v1/namespaces/default/tokens/transfers?limit=10'
+      `${fireflyUrl}/api/v1/namespaces/${fireflyNamespace}/tokens/transfers?limit=10`
     );
     
     if (txResponse.data && txResponse.data.length > 0) {

@@ -62,8 +62,7 @@ export function CertificateSelector({
                 isSelected
                   ? 'border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-500/10'
                   : 'border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 bg-white dark:bg-gray-800/50'
-              } ${!isValid ? 'opacity-60' : ''}`}
-              disabled={!isValid}
+              }`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">

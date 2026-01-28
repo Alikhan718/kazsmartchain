@@ -300,6 +300,25 @@ services:
       - api
     entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-web.sh"]
 
+  # ========================================
+  # Docs - Documentation Site
+  # ========================================
+  
+  docs:
+    image: node:20
+    container_name: kaz-docs
+    working_dir: /srv
+    volumes:
+      - ./:/srv
+      - node_modules_docs:/srv/apps/docs/node_modules
+      - node_modules_root:/srv/node_modules
+    environment:
+      PORT: 3002
+      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
+    ports:
+      - "3002:3002"
+    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-docs.sh"]
+
 volumes:
   pgdata:
   ipfs_data:
@@ -309,6 +328,7 @@ volumes:
   solana_data:
   node_modules_api:
   node_modules_web:
+  node_modules_docs:
   node_modules_sdk:
   node_modules_root:
   node_modules_root_api:

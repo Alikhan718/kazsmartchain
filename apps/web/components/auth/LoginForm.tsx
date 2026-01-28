@@ -69,6 +69,14 @@ export function LoginForm() {
       return;
     }
 
+    // Проверяем валидность сертификата, но не блокируем вход
+    const now = new Date();
+    const isCertValid = selectedCert.validFrom <= now && selectedCert.validTo >= now;
+    if (!isCertValid) {
+      // Показываем предупреждение, но продолжаем процесс входа
+      console.warn('Выбран истекший сертификат. Попытка входа может не удаться.');
+    }
+
     setLoading(true);
     setError(null);
     setStatus('loading');
@@ -215,6 +223,27 @@ export function LoginForm() {
         selected={selectedCert}
         onSelect={setSelectedCert}
       />
+
+      {/* Warning for expired certificate */}
+      {selectedCert && (() => {
+        const now = new Date();
+        const isCertValid = selectedCert.validFrom <= now && selectedCert.validTo >= now;
+        if (!isCertValid) {
+          return (
+            <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-200 dark:border-yellow-500/20">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
+                <div className="flex-1">
+                  <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                    Выбран истекший сертификат. Вход может не удаться, если сервер не принимает истекшие сертификаты.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        return null;
+      })()}
 
       {/* Error Message */}
       {error && (

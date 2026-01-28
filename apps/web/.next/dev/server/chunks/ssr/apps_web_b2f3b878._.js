@@ -14,7 +14,7 @@ __turbopack_context__.s([
 ]);
 const API_BASE = ("TURBOPACK compile-time value", "http://localhost:4000") || 'http://localhost:4000';
 const RELAY_BASE = ("TURBOPACK compile-time value", "http://localhost:4100") || 'http://localhost:4100';
-const EDIPLOMA_API_URL = process.env.NEXT_PUBLIC_EDIPLOMA_API_URL || 'http://localhost:8081';
+const EDIPLOMA_API_URL = process.env.NEXT_PUBLIC_EDIPLOMA_API_URL || 'https://api.ediploma.kz';
 function getDevToken(tenantId = 'demo-bank') {
     return `dev:${tenantId}:OrgAdmin`;
 }

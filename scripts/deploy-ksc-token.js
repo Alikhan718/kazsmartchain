@@ -55,9 +55,11 @@ async function main() {
 
   // Register in FireFly
   console.log("🔗 Registering token pool in FireFly...");
+  const fireflyUrl = process.env.FIREFLY_BASE_URL || 'http://localhost:5000';
+  const fireflyNamespace = process.env.FIREFLY_NAMESPACE || 'default';
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/namespaces/default/tokens/pools?publish=true',
+      `${fireflyUrl}/api/v1/namespaces/${fireflyNamespace}/tokens/pools?publish=true`,
       {
         name: "KSC-Token",
         type: "fungible",
