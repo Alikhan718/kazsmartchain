@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Headers, Req, HttpCode, HttpStatus, Logger } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { AuthService, LoginRequest } from './auth.service';
+import { AuthService } from './auth.service';
 import { Request } from 'express';
 
 @ApiTags('Authentication')
@@ -10,46 +10,30 @@ export class AuthController {
   
   constructor(private readonly auth: AuthService) {}
 
-  @Post('/challenge')
+  @Post('/biometric/session')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Generate challenge for ECDSA login' })
-  @ApiResponse({ status: 200, description: 'Challenge generated successfully' })
-  async generateChallenge(@Req() req: Request) {
-    const ipAddress = req.ip || req.socket.remoteAddress;
-    const userAgent = req.get('user-agent');
-    
-    const result = await this.auth.generateChallenge(ipAddress, userAgent);
-    
-    return {
-      ...result,
-      expiresAt: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
-    };
+  @ApiOperation({ summary: 'Create biometric verification session' })
+  @ApiResponse({ status: 200, description: 'Session created successfully' })
+  async createBiometricSession() {
+    this.logger.log('Creating biometric session...');
+    return await this.auth.createBiometricSession();
   }
 
-  @Post('/login')
+  @Post('/biometric/verify')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Login with ECDSA signature' })
+  @ApiOperation({ summary: 'Verify biometric session and login' })
   @ApiResponse({ status: 200, description: 'Login successful' })
-  @ApiResponse({ status: 401, description: 'Invalid signature or challenge' })
-  async login(
-    @Body() body: LoginRequest,
+  @ApiResponse({ status: 401, description: 'Verification failed' })
+  async verifyBiometricSession(
+    @Body() body: { sessionId: string },
     @Req() req: Request,
   ) {
-    // Логируем что получили
-    this.logger.debug(`Received login request: cert length=${body.certificate?.length || 0}`);
-    this.logger.debug(`Certificate preview: ${body.certificate?.substring(0, 200)}`);
-    this.logger.debug(`Certificate end: ${body.certificate?.substring(Math.max(0, (body.certificate?.length || 0) - 100))}`);
-    this.logger.debug(`Full certificate: ${body.certificate}`);
-    
-    // Проверяем raw body если доступен
-    if ((req as any).rawBody) {
-      this.logger.debug(`Raw body length: ${(req as any).rawBody.length}`);
-    }
+    this.logger.log(`Verifying biometric session: ${body.sessionId}`);
     
     const ipAddress = req.ip || req.socket.remoteAddress;
     const userAgent = req.get('user-agent');
     
-    return await this.auth.loginWithECDSA(body, ipAddress, userAgent);
+    return await this.auth.loginWithBiometric(body.sessionId, ipAddress, userAgent);
   }
 
   @Post('/refresh')
@@ -71,4 +55,3 @@ export class AuthController {
     return { authenticated: !!user, user };
   }
 }
-

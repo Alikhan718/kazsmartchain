@@ -15,6 +15,7 @@ import { ProcessedEvent } from './src/persistence/entities/processed-event.entit
 import { Init1700000000000 } from './src/migrations/1700000000000-init';
 import { AddFireflyUrl1700000000001 } from './src/migrations/1700000000001-add-firefly-url';
 import { AddAuthTables1703000000000 } from './src/migrations/1703000000000-add-auth-tables';
+import { AddBiometricFields1704000000000 } from './src/migrations/1704000000000-add-biometric-fields';
 
 export default new DataSource({
   type: 'postgres',
@@ -38,6 +39,6 @@ export default new DataSource({
     RelayCheckpoint,
     ProcessedEvent,
   ],
-  migrations: [Init1700000000000, AddFireflyUrl1700000000001, AddAuthTables1703000000000],
+  migrations: [Init1700000000000, AddFireflyUrl1700000000001, AddAuthTables1703000000000, AddBiometricFields1704000000000],
 });
 

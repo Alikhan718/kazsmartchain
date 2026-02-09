@@ -3,7 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../persistence/entities/user.entity';
 import { Organization } from '../../persistence/entities/organization.entity';
-import { CertificateInfo } from '../ecdsa/certificate-parser.service';
+
+export interface BiometricUserInfo {
+  iin: string;
+  firstName?: string;
+  lastName?: string;
+  patronymic?: string;
+  phone?: string;
+  sessionId: string;
+}
 
 @Injectable()
 export class UserService {
@@ -17,102 +25,59 @@ export class UserService {
   ) {}
 
   /**
-   * Найти или создать пользователя по сертификату
+   * Найти или создать пользователя по результату биометрической верификации
    */
-  async findOrCreateByCertificate(certInfo: CertificateInfo): Promise<User> {
-    // 1. Найти пользователя по serial number сертификата
+  async findOrCreateByBiometric(info: BiometricUserInfo): Promise<User> {
+    // 1. Найти пользователя по ИИН
     let user = await this.userRepo.findOne({
-      where: { certificateSerial: certInfo.serialNumber },
+      where: { iin: info.iin },
       relations: ['organization', 'roles'],
     });
 
     if (user) {
-      // Обновить информацию о сертификате
-      user.certificateSerial = certInfo.serialNumber;
-      user.email = certInfo.subject.email || user.email;
-      user.displayName = this.getDisplayName(certInfo);
-      user.certificateSubject = certInfo.subject as any;
-      user.certificateIssuer = certInfo.issuer as any;
-      user.certificateValidFrom = certInfo.validFrom;
-      user.certificateValidTo = certInfo.validTo;
+      // Обновить информацию о пользователе
+      user.displayName = this.getDisplayNameFromBiometric(info) || user.displayName;
+      user.phone = info.phone || user.phone;
+      user.biometricVerified = true;
+      user.biometricSessionId = info.sessionId;
       await this.userRepo.save(user);
+      this.logger.log(`Updated existing user ${user.id} by IIN ${info.iin}`);
       return user;
     }
 
     // 2. Определить организацию
-    const organization = await this.determineOrganization(certInfo);
+    const organization = await this.determineOrganizationByIIN(info.iin);
 
     // 3. Создать нового пользователя
     user = this.userRepo.create({
-      email: certInfo.subject.email || `${certInfo.serialNumber}@cert.kz`,
-      displayName: this.getDisplayName(certInfo),
-      certificateSerial: certInfo.serialNumber,
-      certificateSubject: certInfo.subject as any,
-      certificateIssuer: certInfo.issuer as any,
-      certificateValidFrom: certInfo.validFrom,
-      certificateValidTo: certInfo.validTo,
+      email: `${info.iin}@biometric.kz`,
+      displayName: this.getDisplayNameFromBiometric(info),
+      iin: info.iin,
+      phone: info.phone,
+      biometricVerified: true,
+      biometricSessionId: info.sessionId,
       organization: organization,
     });
 
     await this.userRepo.save(user);
+    this.logger.log(`Created new user ${user.id} by IIN ${info.iin}`);
 
     return user;
   }
 
-  private getDisplayName(certInfo: CertificateInfo): string {
-    if (certInfo.subject.organizationName) {
-      // Юридическое лицо
-      return certInfo.subject.organizationName;
-    } else {
-      // Физическое лицо
-      const parts = [
-        certInfo.subject.surname,
-        certInfo.subject.givenName,
-      ].filter(Boolean);
-      return parts.join(' ') || certInfo.subject.commonName || 'Unknown';
-    }
+  private getDisplayNameFromBiometric(info: BiometricUserInfo): string {
+    const parts = [
+      info.lastName,
+      info.firstName,
+      info.patronymic,
+    ].filter(Boolean);
+    return parts.join(' ') || `User ${info.iin}`;
   }
 
-  private async determineOrganization(
-    certInfo: CertificateInfo,
-  ): Promise<Organization> {
-    // 1. Если есть БИН, найти организацию по БИН
-    if (certInfo.subject.bin) {
-      const org = await this.orgRepo.findOne({
-        where: { bin: certInfo.subject.bin },
-      });
-      if (org) {
-        this.logger.log(`Found organization by BIN: ${org.name}`);
-        return org;
-      }
-    }
-
-    // 2. Если есть organizationName, найти по имени
-    if (certInfo.subject.organizationName) {
-      const org = await this.orgRepo.findOne({
-        where: { name: certInfo.subject.organizationName },
-      });
-      if (org) {
-        this.logger.log(`Found organization by name: ${org.name}`);
-        return org;
-      }
-    }
-
-    // 3. Найти организацию по email домену
-    if (certInfo.subject.email) {
-      const emailDomain = certInfo.subject.email.split('@')[1];
-      const org = await this.orgRepo.findOne({
-        where: { emailDomain: emailDomain },
-      });
-      if (org) {
-        this.logger.log(`Found organization by email domain: ${org.name}`);
-        return org;
-      }
-    }
-
-    // 4. Использовать первую доступную организацию или создать default
+  private async determineOrganizationByIIN(iin: string): Promise<Organization> {
+    // 1. Использовать первую доступную организацию (demo-bank)
     const defaultOrg = await this.orgRepo.findOne({
-      where: { slug: 'demo-bank' }, // Используем существующую организацию
+      where: { slug: 'demo-bank' },
     });
 
     if (defaultOrg) {
@@ -120,7 +85,7 @@ export class UserService {
       return defaultOrg;
     }
 
-    // 5. Если ничего не найдено, выбрасываем ошибку
+    // 2. Если ничего не найдено, выбрасываем ошибку
     throw new Error('Organization not found. Please contact administrator.');
   }
 }

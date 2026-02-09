@@ -34,6 +34,19 @@ export class User {
   @Column({ type: 'timestamp', nullable: true, name: 'certificate_valid_to' })
   certificateValidTo?: Date;
 
+  // Biometric KYC fields
+  @Column({ nullable: true, unique: true, name: 'iin' })
+  iin?: string; // ИИН (Индивидуальный Идентификационный Номер)
+
+  @Column({ nullable: true, name: 'phone' })
+  phone?: string; // Телефон из EDocument верификации
+
+  @Column({ default: false, name: 'biometric_verified' })
+  biometricVerified!: boolean; // Прошел ли биометрическую верификацию
+
+  @Column({ nullable: true, name: 'biometric_session_id' })
+  biometricSessionId?: string; // Последний session_id для аудита
+
   @ManyToOne(() => Organization, (o) => o.users)
   organization!: Organization;
 

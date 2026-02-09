@@ -1,4 +1,7 @@
-# Запуск: docker-compose -f docker-compose.simple.yml up -d
+# Запуск на сервере: docker-compose -f docker-compose.cloud.yml up -d
+# Исправлено: убраны устаревшие параметры --miner-enabled и --miner-coinbase
+# Для настройки внешнего адреса используйте переменную окружения SERVER_URL
+# Пример: SERVER_URL=https://your-domain.com docker-compose -f docker-compose.cloud.yml up -d
 
 services:
   # ========================================
@@ -56,6 +59,8 @@ services:
 
   # ========================================
   # Hyperledger Besu - Ethereum блокчейн
+  # ИСПРАВЛЕНО: убраны устаревшие параметры --miner-enabled и --miner-coinbase
+  # В dev режиме блоки создаются автоматически при наличии транзакций
   # ========================================
   
   besu:
@@ -105,10 +110,6 @@ services:
       retries: 10
       start_period: 10s
 
-  # ========================================
-  # Hyperledger FireFly - Blockchain Gateway
-  # ========================================
-  
   # ========================================
   # EVMConnect - Blockchain Connector
   # ========================================
@@ -275,6 +276,8 @@ services:
 
   # ========================================
   # Web - Next.js Frontend
+  # ВАЖНО: Замените ${SERVER_URL} на ваш внешний адрес сервера
+  # Например: SERVER_URL=https://your-domain.com
   # ========================================
   
   web:
@@ -287,9 +290,9 @@ services:
       - node_modules_sdk:/srv/packages/sdk/node_modules
       - node_modules_root:/srv/node_modules
     environment:
-      NEXT_PUBLIC_API_BASE_URL: http://localhost:4000
+      NEXT_PUBLIC_API_BASE_URL: ${SERVER_URL:-http://localhost:4000}
       NEXT_PUBLIC_SOLANA_CLUSTER: devnet
-      NEXT_PUBLIC_RELAY_BASE_URL: http://localhost:4100
+      NEXT_PUBLIC_RELAY_BASE_URL: ${SERVER_URL:-http://localhost:4100}
       PORT: 3000
       NPM_CONFIG_LEGACY_PEER_DEPS: "true"
     ports:
@@ -334,4 +337,3 @@ volumes:
 networks:
   default:
     name: kazsmartchain-network
-

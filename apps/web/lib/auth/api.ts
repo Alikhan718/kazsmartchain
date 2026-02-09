@@ -1,35 +1,25 @@
 import { API_BASE } from '../env';
 
-export interface ChallengeResponse {
-  challenge: string;
-  nonce: string;
-  expiresAt: string;
+export interface BiometricSessionResponse {
+  sessionId: string;
+  technologies: string[];
 }
 
-export interface LoginRequest {
-  certificate: string;
-  signature: string;
-  nonce: string;
-  data: string;
-}
-
-export interface LoginResponse {
+export interface BiometricVerifyResponse {
   accessToken: string;
   refreshToken?: string;
   user?: {
     id: string;
     email: string;
     displayName: string;
+    iin: string;
     roles: string[];
     organization: {
       id: string;
       name: string;
+      slug: string;
     };
   };
-}
-
-export interface RefreshTokenRequest {
-  refreshToken: string;
 }
 
 export interface RefreshTokenResponse {
@@ -45,10 +35,10 @@ class AuthAPI {
   }
 
   /**
-   * Получить challenge для подписи
+   * Создать сессию биометрической верификации
    */
-  async getChallenge(): Promise<ChallengeResponse> {
-    const response = await fetch(`${this.baseUrl}/challenge`, {
+  async createBiometricSession(): Promise<BiometricSessionResponse> {
+    const response = await fetch(`${this.baseUrl}/biometric/session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,43 +46,46 @@ class AuthAPI {
     });
 
     if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: 'Ошибка получения challenge' }));
-      throw new Error(error.message || 'Ошибка получения challenge');
+      const error = await response.json().catch(() => ({ message: 'Ошибка создания сессии верификации' }));
+      throw new Error(error.message || 'Ошибка создания сессии верификации');
     }
 
     return response.json();
   }
 
   /**
-   * Вход с ЭЦП
+   * Подтвердить биометрическую сессию и получить токены.
+   * Backend polls Biometric.kz for results (up to ~33s), so we need
+   * a longer timeout via AbortController.
    */
-  async login(request: LoginRequest): Promise<LoginResponse> {
-    // Логируем что отправляем
-    console.log('Sending login request:', {
-      certLength: request.certificate?.length || 0,
-      certPreview: request.certificate?.substring(0, 100),
-      signatureLength: request.signature?.length || 0,
-      dataLength: request.data?.length || 0,
-    });
-    
-    const jsonBody = JSON.stringify(request);
-    console.log('JSON body length:', jsonBody.length);
-    console.log('JSON body preview:', jsonBody.substring(0, 200));
-    
-    const response = await fetch(`${this.baseUrl}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonBody,
-    });
+  async verifyBiometricSession(sessionId: string): Promise<BiometricVerifyResponse> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: 'Ошибка входа' }));
-      throw new Error(error.message || 'Ошибка входа');
+    try {
+      const response = await fetch(`${this.baseUrl}/biometric/verify`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sessionId }),
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ message: 'Ошибка верификации' }));
+        throw new Error(error.message || 'Ошибка верификации');
+      }
+
+      return response.json();
+    } catch (err: any) {
+      if (err.name === 'AbortError') {
+        throw new Error('Превышено время ожидания результата верификации. Попробуйте ещё раз.');
+      }
+      throw err;
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    return response.json();
   }
 
   /**
@@ -114,27 +107,6 @@ class AuthAPI {
 
     return response.json();
   }
-
-  /**
-   * Проверка сертификата
-   */
-  async verifyCertificate(certificate: string): Promise<{ valid: boolean; info?: any }> {
-    const response = await fetch(`${this.baseUrl}/verify-certificate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ certificate }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: 'Ошибка проверки сертификата' }));
-      throw new Error(error.message || 'Ошибка проверки сертификата');
-    }
-
-    return response.json();
-  }
 }
 
 export const authAPI = new AuthAPI();
-

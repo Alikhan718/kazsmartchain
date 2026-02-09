@@ -14,7 +14,6 @@ import { NetworkModule } from './network/network.module';
 import { TokensModule } from './tokens/tokens.module';
 import { EntitiesModule } from '../persistence/entities.module';
 import { RealtimeModule } from './realtime/realtime.module';
-import { ECDSAModule } from './ecdsa/ecdsa.module';
 import { UsersModule } from './users/users.module';
 import { DiplomasModule } from './diplomas/diplomas.module';
 
@@ -46,7 +45,6 @@ import { DiplomasModule } from './diplomas/diplomas.module';
     NetworkModule,
     TokensModule,
     RealtimeModule,
-    ECDSAModule,
     UsersModule,
     DiplomasModule,
   ],

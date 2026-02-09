@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { RoleAssignment, Role } from '../../persistence/entities/role-assignment.entity';
 import { User } from '../../persistence/entities/user.entity';
 import { Organization } from '../../persistence/entities/organization.entity';
-import { CertificateInfo } from '../ecdsa/certificate-parser.service';
 
 @Injectable()
 export class RoleAssignmentService {
@@ -18,12 +17,9 @@ export class RoleAssignmentService {
   ) {}
 
   /**
-   * Назначение роли пользователю по сертификату
+   * Назначение роли пользователю после биометрической верификации
    */
-  async assignRoleByCertificate(
-    user: User,
-    certInfo: CertificateInfo,
-  ): Promise<RoleAssignment> {
+  async assignRoleByBiometric(user: User): Promise<RoleAssignment> {
     // Проверяем, есть ли уже роль у пользователя
     const existingRole = await this.roleRepo.findOne({
       where: {
@@ -37,36 +33,10 @@ export class RoleAssignmentService {
       return existingRole;
     }
 
-    // Определяем роль по сертификату
-    let role: Role = 'Operator';
+    // По умолчанию все биометрически верифицированные пользователи получают роль Operator
+    const role: Role = 'Operator';
 
-    // 1. Проверить БИН организации
-    if (certInfo.subject.bin && user.organization.bin) {
-      if (certInfo.subject.bin === user.organization.bin) {
-        // Сертификат принадлежит организации
-        role = 'OrgAdmin';
-        this.logger.log(`Assigned OrgAdmin role based on BIN match`);
-      }
-    }
-
-    // 2. Проверить email домен
-    if (certInfo.subject.email && user.organization.emailDomain) {
-      const emailDomain = certInfo.subject.email.split('@')[1];
-      if (emailDomain === user.organization.emailDomain) {
-        role = 'OrgAdmin';
-        this.logger.log(`Assigned OrgAdmin role based on email domain match`);
-      }
-    }
-
-    // 3. Если это юридическое лицо и организация совпадает
-    if (certInfo.subject.organizationName && user.organization.name) {
-      if (certInfo.subject.organizationName === user.organization.name) {
-        role = 'OrgAdmin';
-        this.logger.log(`Assigned OrgAdmin role based on organization name match`);
-      }
-    }
-
-    // 4. Создать назначение роли
+    // Создать назначение роли
     const roleAssignment = this.roleRepo.create({
       user: user,
       organization: user.organization,

@@ -3,9 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as crypto from 'crypto';
-import { AuthChallenge } from '../../persistence/entities/auth-challenge.entity';
 import { RefreshToken } from '../../persistence/entities/refresh-token.entity';
-import { ECDSAService } from '../ecdsa/ecdsa.service';
+import { BiometricService } from '../biometric/biometric.service';
 import { UserService } from '../users/users.service';
 import { RoleAssignmentService } from '../users/role-assignment.service';
 import { User } from '../../persistence/entities/user.entity';
@@ -15,156 +14,70 @@ export type AuthUser = {
   tenantId: string;
   roles: string[];
   email: string;
-  certificateSerial?: string;
+  iin?: string;
 };
-
-export interface LoginRequest {
-  certificate: string; // PEM сертификат в Base64 или прямой PEM
-  signature: string; // CMS подпись в Base64
-  nonce: string;
-  data: string; // Данные которые были подписаны (Base64)
-}
 
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
-    @InjectRepository(AuthChallenge)
-    private readonly challengeRepo: Repository<AuthChallenge>,
     @InjectRepository(RefreshToken)
     private readonly refreshTokenRepo: Repository<RefreshToken>,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
     private readonly jwt: JwtService,
-    private readonly ecdsa: ECDSAService,
+    private readonly biometric: BiometricService,
     private readonly users: UserService,
     private readonly roleAssignment: RoleAssignmentService,
   ) {}
 
   /**
-   * Генерация challenge для подписи
+   * Создание биометрической сессии
    */
-  async generateChallenge(ipAddress?: string, userAgent?: string): Promise<{ challenge: string; nonce: string }> {
-    const nonce = crypto.randomBytes(32).toString('hex');
-    const timestamp = Date.now();
-    const challenge = `KazSmartChain Login Challenge: ${nonce}:${timestamp}`;
-    
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 минут
-
-    const challengeEntity = this.challengeRepo.create({
-      nonce,
-      challenge,
-      expiresAt,
-      ipAddress,
-      userAgent,
-    });
-
-    await this.challengeRepo.save(challengeEntity);
-
-    this.logger.log(`Generated challenge for nonce: ${nonce.substring(0, 8)}...`);
-
-    return { challenge, nonce };
+  async createBiometricSession(): Promise<{ sessionId: string; technologies: string[] }> {
+    const result = await this.biometric.createSession();
+    return {
+      sessionId: result.session_id,
+      technologies: result.technologies,
+    };
   }
 
   /**
-   * Аутентификация с ЭЦП
+   * Верификация биометрической сессии и аутентификация пользователя
    */
-  async loginWithECDSA(
-    request: LoginRequest,
+  async loginWithBiometric(
+    sessionId: string,
     ipAddress?: string,
     userAgent?: string,
   ): Promise<{ accessToken: string; refreshToken: string; user: any }> {
-    // 1. Проверить challenge
-    const challengeEntity = await this.challengeRepo.findOne({
-      where: { nonce: request.nonce },
+    // 1. Получить результат верификации от Biometric.kz
+    const result = await this.biometric.getSessionResult(sessionId);
+
+    // 2. Валидировать результат
+    const validation = this.biometric.validateResult(result);
+
+    if (!validation.valid) {
+      this.logger.warn(`Biometric verification failed for session ${sessionId}: ${validation.reason}`);
+      throw new UnauthorizedException(`Биометрическая верификация не пройдена: ${validation.reason}`);
+    }
+
+    this.logger.log(`Biometric verification passed for session ${sessionId}, IIN: ${validation.iin}`);
+
+    // 3. Найти или создать пользователя по ИИН
+    const user = await this.users.findOrCreateByBiometric({
+      iin: validation.iin!,
+      firstName: validation.firstName,
+      lastName: validation.lastName,
+      patronymic: validation.patronymic,
+      phone: validation.phone,
+      sessionId: sessionId,
     });
 
-    if (!challengeEntity) {
-      throw new UnauthorizedException('Invalid challenge nonce');
-    }
+    // 4. Назначить роль если нужно
+    await this.roleAssignment.assignRoleByBiometric(user);
 
-    if (challengeEntity.used) {
-      throw new UnauthorizedException('Challenge already used');
-    }
-
-    if (challengeEntity.expiresAt < new Date()) {
-      throw new UnauthorizedException('Challenge expired');
-    }
-
-    // 2. Проверить подпись
-    // request.data должен быть в Base64 (как было подписано)
-    // request.signature - это CMS подпись в Base64
-    // request.certificate - это PEM сертификат (может быть обрезанным, тогда извлекаем из подписи)
-    
-    this.logger.debug(`Verifying signature: cert length=${request.certificate?.length || 0}, data length=${request.data?.length || 0}, signature length=${request.signature?.length || 0}`);
-    this.logger.debug(`Certificate preview: ${request.certificate?.substring(0, 100)}...`);
-    this.logger.debug(`Data preview: ${request.data?.substring(0, 50)}...`);
-    this.logger.debug(`Signature preview: ${request.signature?.substring(0, 50)}...`);
-    
-    // Проверяем что все данные присутствуют
-    if (!request.data || !request.signature) {
-      this.logger.warn('Missing required data for signature verification');
-      challengeEntity.used = true;
-      challengeEntity.usedAt = new Date();
-      await this.challengeRepo.save(challengeEntity);
-      throw new UnauthorizedException('Missing data or signature');
-    }
-    
-    // Если сертификат обрезан (меньше 50 символов), пытаемся извлечь его из CMS подписи
-    let certificate = request.certificate;
-    if (!certificate || certificate.length < 50) {
-      this.logger.warn(`Certificate too short (${certificate?.length || 0} chars), attempting to extract from CMS signature`);
-      try {
-        const extractedCert = await this.ecdsa.extractCertificateFromSignature(request.signature);
-        if (extractedCert && extractedCert.length > 50) {
-          this.logger.log(`Successfully extracted certificate from CMS signature (${extractedCert.length} chars)`);
-          certificate = extractedCert;
-        } else {
-          this.logger.warn(`Failed to extract certificate from signature, using provided certificate`);
-        }
-      } catch (extractError: any) {
-        this.logger.warn(`Error extracting certificate from signature: ${extractError.message}`);
-        // Продолжаем с предоставленным сертификатом
-      }
-    }
-    
-    if (!certificate || certificate.length < 50) {
-      this.logger.warn('Certificate still too short after extraction attempt');
-      challengeEntity.used = true;
-      challengeEntity.usedAt = new Date();
-      await this.challengeRepo.save(challengeEntity);
-      throw new UnauthorizedException('Invalid certificate: too short');
-    }
-    
-    const isValid = await this.ecdsa.verifySignature(
-      certificate,
-      request.data, // Данные в Base64 которые были подписаны
-      request.signature, // CMS подпись в Base64
-    );
-
-    if (!isValid) {
-      this.logger.warn('Signature verification failed');
-      // Отметить challenge как использованный даже при ошибке
-      challengeEntity.used = true;
-      challengeEntity.usedAt = new Date();
-      await this.challengeRepo.save(challengeEntity);
-      
-      throw new UnauthorizedException('Invalid signature');
-    }
-    
-    this.logger.log('Signature verified successfully');
-
-    // 3. Извлечь информацию из сертификата (используем извлеченный если был обрезан)
-    const certInfo = await this.ecdsa.extractCertificateInfo(certificate);
-
-    // 4. Найти или создать пользователя
-    const user = await this.users.findOrCreateByCertificate(certInfo);
-
-    // 5. Назначить роль если нужно
-    await this.roleAssignment.assignRoleByCertificate(user, certInfo);
-
-    // 6. Загрузить пользователя с ролями
+    // 5. Загрузить пользователя с ролями
     const userWithRoles = await this.userRepo.findOne({
       where: { id: user.id },
       relations: ['organization', 'roles'],
@@ -174,25 +87,20 @@ export class AuthService {
       throw new UnauthorizedException('User not found');
     }
 
-    // 7. Отметить challenge как использованный
-    challengeEntity.used = true;
-    challengeEntity.usedAt = new Date();
-    await this.challengeRepo.save(challengeEntity);
-
-    // 8. Сгенерировать JWT токены
+    // 6. Сгенерировать JWT токены
     const roles = userWithRoles.roles.map(r => r.role);
     const authUser: AuthUser = {
       userId: userWithRoles.id,
       tenantId: userWithRoles.organization.id,
       roles: roles,
       email: userWithRoles.email,
-      certificateSerial: userWithRoles.certificateSerial,
+      iin: userWithRoles.iin,
     };
 
     const accessToken = this.generateAccessToken(authUser);
     const refreshToken = await this.generateRefreshToken(userWithRoles, ipAddress, userAgent);
 
-    this.logger.log(`User ${userWithRoles.id} logged in successfully with certificate ${certInfo.serialNumber}`);
+    this.logger.log(`User ${userWithRoles.id} logged in successfully via biometric verification (IIN: ${validation.iin})`);
 
     return {
       accessToken,
@@ -201,6 +109,7 @@ export class AuthService {
         id: userWithRoles.id,
         email: userWithRoles.email,
         displayName: userWithRoles.displayName,
+        iin: userWithRoles.iin,
         roles: roles,
         organization: {
           id: userWithRoles.organization.id,
@@ -238,7 +147,7 @@ export class AuthService {
       tenantId: tokenEntity.user.organization.id,
       roles: roles,
       email: tokenEntity.user.email,
-      certificateSerial: tokenEntity.user.certificateSerial,
+      iin: tokenEntity.user.iin,
     };
 
     const accessToken = this.generateAccessToken(authUser);
@@ -279,7 +188,7 @@ export class AuthService {
         tenantId: user.tenantId,
         roles: user.roles,
         email: user.email,
-        certificateSerial: user.certificateSerial,
+        iin: user.iin,
       },
       {
         expiresIn: '15m',
@@ -306,4 +215,3 @@ export class AuthService {
     return await this.refreshTokenRepo.save(refreshTokenEntity);
   }
 }
-
