@@ -1,9 +1,9 @@
 {
   "network": "besu",
-  "contractAddress": "0x42699A7612A82f1d9C36148af9C77354759b210b",
-  "deployer": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "contractAddress": "0x79c732Aa8e089225C18926e82DA3A3F09cDf98e4",
+  "deployer": "0x80C467a0725493C04Fbe151BA3FffE55F1c8d2e3",
   "initialSupply": 1000000,
   "deploymentBlock": null,
-  "transactionHash": "0xbfe755389114352730ac70430777dd713e1332c161780a9c6551ebbd751c18da",
-  "timestamp": "2025-11-26T08:20:45.745Z"
+  "transactionHash": "0x9169a76a56f9bb7fb371c578e91b22766a8eff7af493ee472486609bb90dd011",
+  "timestamp": "2026-03-03T05:19:07.648Z"
 }

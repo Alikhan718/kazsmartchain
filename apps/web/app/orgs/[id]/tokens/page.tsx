@@ -49,7 +49,7 @@ export default function TokensPage({ params }: { params: Promise<{ id: string }>
   const { data: balances, isLoading: balancesLoading, refetch: refetchBalances } = useQuery({
     queryKey: ['ksc-balances'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/balances');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/balances`);
       return res.json();
     },
     refetchInterval: 10000,
@@ -59,7 +59,7 @@ export default function TokensPage({ params }: { params: Promise<{ id: string }>
   const { data: transactions, isLoading: txLoading, refetch: refetchTx } = useQuery({
     queryKey: ['org-transactions', orgId],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/transactions?limit=30');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/transactions?limit=30`);
       const data = await res.json();
       
       const orgAddress = orgData?.address.toLowerCase();
@@ -78,7 +78,7 @@ export default function TokensPage({ params }: { params: Promise<{ id: string }>
   // Transfer mutation
   const transferMutation = useMutation({
     mutationFn: async (data: { toOrg: string; amount: number }) => {
-      const res = await fetch('http://localhost:4000/api/tokens/transfer', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/transfer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

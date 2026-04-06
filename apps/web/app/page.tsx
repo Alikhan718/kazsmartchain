@@ -62,7 +62,7 @@ export default function Home() {
               Мониторинг блокчейн сети KazSmartChain
             </p>
             <p className="text-gray-500 dark:text-gray-500 text-sm ml-14 mt-1">
-              Besu • FireFly • KSC Tokens • Solana NFT
+              Besu • FireFly • KSC Tokens
             </p>
           </div>
           <div className="flex items-center gap-3">

@@ -20,7 +20,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U kaz"]
+      test: ["CMD-SHELL", "pg_isready -U kaz -d kazsmartchain"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -67,22 +67,25 @@ services:
     image: hyperledger/besu:latest
     container_name: kaz-besu
     command:
-      - "--network=dev"
+      - "--genesis-file=/config/genesis.json"
+      - "--node-private-key-file=/config/nodekey"
       - "--data-path=/data"
       - "--rpc-http-enabled"
       - "--rpc-http-host=0.0.0.0"
       - "--rpc-http-port=8545"
-      - "--rpc-http-api=ETH,NET,WEB3,ADMIN,DEBUG"
+      - "--rpc-http-api=ETH,NET,WEB3,ADMIN,DEBUG,QBFT"
       - "--rpc-http-cors-origins=*"
       - "--host-allowlist=*"
       - "--min-gas-price=0"
+      - "--sync-min-peers=0"
     ports:
       - "8545:8545"
     volumes:
       - besu_data:/data
+      - ./besu-config:/config:ro
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8545"]
-      interval: 10s
+      interval: 20s
       timeout: 5s
       retries: 10
       start_period: 30s
@@ -104,8 +107,8 @@ services:
     depends_on:
       - besu
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8545/"]
-      interval: 10s
+      test: ["CMD","wget", "--spider", "-q", "http://localhost:8545/"]
+      interval: 20s
       timeout: 5s
       retries: 10
       start_period: 10s
@@ -128,7 +131,7 @@ services:
       - firefly-signer  # Теперь через signer
       - postgres
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5008/eventstreams"]
+      test: ["CMD","wget","--spider","q","http://localhost:5008/eventstreams"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -192,27 +195,27 @@ services:
   # Solana - Devnet (реальный)
   # ========================================
   
-  solana-validator:
-    image: solanalabs/solana:stable
-    container_name: kaz-solana
-    command:
-      - solana-test-validator
-      - --no-bpf-jit
-      - --rpc-bind-address=0.0.0.0
-      - --rpc-port=8899
-      - --limit-ledger-size=10000000
-    ports:
-      - "8899:8899"  # RPC
-      - "8900:8900"  # PubSub
-      - "9900:9900"  # Faucet
-    volumes:
-      - solana_data:/data
-    healthcheck:
-      test: ["CMD", "solana", "cluster-version"]
-      interval: 15s
-      timeout: 10s
-      retries: 10
-      start_period: 30s
+#  solana-validator:
+#    image: solanalabs/solana:stable
+#    container_name: kaz-solana
+#    command:
+#      - solana-test-validator
+#      - --no-bpf-jit
+#      - --rpc-bind-address=0.0.0.0
+#      - --rpc-port=8899
+#      - --limit-ledger-size=10000000
+#    ports:
+#      - "8899:8899"  # RPC
+#      - "8900:8900"  # PubSub
+#      - "9900:9900"  # Faucet
+#    volumes:
+#      - solana_data:/data
+#    healthcheck:
+#      test: ["CMD", "solana", "cluster-version"]
+#      interval: 15s
+#      timeout: 10s
+#      retries: 10
+#      start_period: 30s
 
   # ========================================
   # API - NestJS Backend
@@ -246,6 +249,7 @@ services:
       # FireFly (используем имя контейнера вместо host.docker.internal)
       FIREFLY_BASE_URL: http://firefly:5000
       FIREFLY_NAMESPACE: default
+      FIREFLY_TOKEN_POOL_NAME: KSC-Token
       
       # Besu
       BESU_RPC_URL: http://besu:8545
@@ -254,7 +258,7 @@ services:
       IPFS_BASE_URL: http://ipfs:5001
       
       # Solana
-      SOLANA_RPC_URL: http://solana-validator:8899
+#      SOLANA_RPC_URL: http://solana-validator:8899
       
       # API
       API_PORT: 4000
@@ -271,7 +275,7 @@ services:
       - postgres
       - redis
       - firefly
-      - solana-validator
+#      - solana-validator
     entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-api.sh"]
 
   # ========================================
@@ -290,35 +294,59 @@ services:
       - node_modules_sdk:/srv/packages/sdk/node_modules
       - node_modules_root:/srv/node_modules
     environment:
-      NEXT_PUBLIC_API_BASE_URL: ${SERVER_URL:-http://localhost:4000}
+      NEXT_PUBLIC_API_BASE_URL: ${SERVER_URL:-https://kazsmartchain.org}
       NEXT_PUBLIC_SOLANA_CLUSTER: devnet
-      NEXT_PUBLIC_RELAY_BASE_URL: ${SERVER_URL:-http://localhost:4100}
+      NEXT_PUBLIC_RELAY_BASE_URL: ${SERVER_URL:-https://kazsmartchain.org}
       PORT: 3000
       NPM_CONFIG_LEGACY_PEER_DEPS: "true"
     ports:
       - "3000:3000"
     depends_on:
       - api
-    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-web.sh"]
-
+    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-web-prod.sh"]
+#    restart: on-failure
   # ========================================
   # Docs - Documentation Site
   # ========================================
   
-  docs:
-    image: node:20
-    container_name: kaz-docs
-    working_dir: /srv
-    volumes:
-      - ./:/srv
-      - node_modules_docs:/srv/apps/docs/node_modules
-      - node_modules_root:/srv/node_modules
-    environment:
-      PORT: 3002
-      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
+#  docs:
+ #   image: node:20
+  #  container_name: kaz-docs
+#    working_dir: /srv
+#    volumes:
+#      - ./:/srv
+#      - node_modules_docs:/srv/apps/docs/node_modules
+#      - node_modules_root:/srv/node_modules
+#    environment:
+#      PORT: 3002
+#      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
+#    ports:
+#      - "3002:3002"
+#    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-docs.sh"]
+  
+  nginx:
+    image: nginx:alpine
+    container_name: kaz-nginx
+    restart: always
     ports:
-      - "3002:3002"
-    entrypoint: ["/bin/bash", "/srv/scripts/docker-entrypoint-docs.sh"]
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - certbot_www:/var/www/certbot:ro
+      - certbot_certs:/etc/letsencrypt:ro
+    depends_on:
+      - web
+      - api
+    networks:
+      - default
+
+  certbot:
+    image: certbot/certbot
+    container_name: kaz-certbot
+    volumes:
+      - certbot_www:/var/www/certbot
+      - certbot_certs:/etc/letsencrypt
 
 volumes:
   pgdata:
@@ -333,6 +361,8 @@ volumes:
   node_modules_sdk:
   node_modules_root:
   node_modules_root_api:
+  certbot_www:
+  certbot_certs:
 
 networks:
   default:

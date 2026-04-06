@@ -7,3 +7,15 @@ build
 .env.local
 .env.*.local
 *.log
+
+config/keys/*.key
+config/keys/password.txt
+
+.idea/
+.vscode/
+
+artifacts/
+cache/
+typechain-types/
+
+network-files/

@@ -26,7 +26,7 @@ export default function TokensPage() {
   const { data: stats, isLoading: statsLoading, refetch: refetchStats, isRefetching } = useQuery({
     queryKey: ['ksc-stats'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/stats');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/stats`);
       return res.json();
     },
     refetchInterval: 10000,
@@ -35,7 +35,7 @@ export default function TokensPage() {
   const { data: balances, isLoading: balancesLoading, refetch: refetchBalances } = useQuery({
     queryKey: ['ksc-balances'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/balances');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/balances`);
       return res.json();
     },
     refetchInterval: 10000,
@@ -44,7 +44,7 @@ export default function TokensPage() {
   const { data: transactions, isLoading: txLoading, refetch: refetchTx } = useQuery({
     queryKey: ['ksc-transactions-all'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/transactions?limit=50');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/transactions?limit=50`);
       return res.json();
     },
     refetchInterval: 15000,

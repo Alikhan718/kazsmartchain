@@ -22,8 +22,10 @@ else
     echo "SDK already built, skipping..."
 fi
 
-# Запускаем Next.js dev server
-echo "Starting Next.js dev server..."
+# Собираем и запускаем Next.js production server
+echo "Building Next.js..."
 cd /srv/apps/web
-exec npm run dev
+npm run build
 
+echo "Starting Next.js production server..."
+exec npm run start

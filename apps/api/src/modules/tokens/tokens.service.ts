@@ -7,8 +7,8 @@ export class TokensService {
   private readonly logger = new Logger(TokensService.name);
   private readonly besuUrl = process.env.BESU_RPC_URL || 'http://besu:8545';
   private readonly fireflyUrl = process.env.FIREFLY_BASE_URL || 'http://firefly:5000';
-  private readonly kscTokenAddress = '0x42699A7612A82f1d9C36148af9C77354759b210b';
-  private readonly kscPoolId = '76805036-2550-4615-9853-4ac2ad43bab3';
+  private readonly kscTokenAddress = '0x79c732Aa8e089225C18926e82DA3A3F09cDf98e4';
+  private readonly kscPoolId = '7dd40db0-5560-4aa0-9d04-8efbc76f4ecd';
 
   // Organization addresses
   private readonly organizations: Record<

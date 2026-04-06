@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { API_BASE, EDIPLOMA_API_URL } from '../../../lib/env';
 import { Search, CheckCircle, XCircle, FileText, Shield, ExternalLink, Loader2, GraduationCap, Link as LinkIcon } from 'lucide-react';
@@ -26,7 +26,7 @@ interface VerificationResult {
   message: string;
 }
 
-export default function VerifyPage() {
+function VerifyContent() {
   const searchParams = useSearchParams();
   const [iin, setIin] = useState('');
   const [loading, setLoading] = useState(false);
@@ -468,5 +468,17 @@ export default function VerifyPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={
+      <div className="text-center py-20">
+        <Loader2 className="w-8 h-8 animate-spin mx-auto text-blue-400" />
+      </div>
+    }>
+      <VerifyContent />
+    </Suspense>
   );
 }

@@ -69,7 +69,7 @@ export default function Orgs() {
   const { data: balances, isLoading } = useQuery({
     queryKey: ['ksc-balances'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:4000/api/tokens/balances');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/balances`);
       return res.json();
     },
     refetchInterval: 10000,

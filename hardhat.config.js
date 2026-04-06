@@ -13,12 +13,12 @@ module.exports = {
   },
   networks: {
     besu: {
-      url: process.env.BESU_RPC_URL || "http://localhost:8545",
-      chainId: 1337, // ← Besu dev chain ID
+      url: "http://besu:8545",
+      chainId: 1991, // ← Besu dev chain ID
       // Using default Besu dev accounts (no private key needed for dev)
       accounts: [
         // Default Besu dev account private key
-        "0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63"
+        "0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb7dd2d4b2b0ffb675872877"
       ]
     }
   },

@@ -11,7 +11,7 @@ export default function TransactionsTable({ limit = 10 }: { limit?: number }) {
     queryKey: ['ksc-transactions', page, limit],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:4000/api/tokens/transactions?limit=${limit}&offset=${page * limit}`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tokens/transactions?limit=${limit}&offset=${page * limit}`
       );
       return res.json();
     },

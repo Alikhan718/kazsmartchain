@@ -31,10 +31,19 @@ confirmations:
 # ============================================
 
 # Policy engine - transactions go to Besu which signs them
-policyengine.simple:
-  fixedGasPrice: 0       # Dev mode - zero gas price
-  gasOracle:
-    mode: fixed
+#policyengine.simple:
+ # fixedGasPrice: 0       # Dev mode - zero gas price
+  #gasOracle:
+   # mode: fixed
+
+transactions:
+  handler:
+    name: simple
+    simple:
+#      fixedGasPrice: 0
+      gasOracle:
+        mode: connector
+
 
 # API Server
 api:

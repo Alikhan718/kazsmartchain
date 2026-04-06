@@ -18,7 +18,7 @@ export default function ValidatorsPage() {
   const { data: validators = [], isLoading } = useQuery({
     queryKey: ['validators'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:4000/api/dashboard/validators');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/dashboard/validators`);
       const data = await response.json();
       return Array.isArray(data) ? data : [];
     },

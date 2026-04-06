@@ -9,9 +9,10 @@ import { Home, Users, FileText, Coins, Shield } from 'lucide-react';
 export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLoginPage = pathname === '/login';
+  const isSocialMealsRoute = pathname.startsWith('/social-meals');
 
-  // На странице login не показываем header и footer
-  if (isLoginPage) {
+  // На страницах логина и social meals не показываем общий header/footer
+  if (isLoginPage || isSocialMealsRoute) {
     return <>{children}</>;
   }
 
